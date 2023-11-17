@@ -1,0 +1,33 @@
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log In</title>
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock stylesheets %}
+</head>
+
+<body>
+{% block content %}
+<div class="center-screen">
+  <div class = 'grid-2'>
+    
+      <img src = "{% static 'image/logo.png' %}" alt="logo" class="logo">
+
+    <form method="post" class = 'login-form'>
+      {% csrf_token %}
+        <label for="id_username">Gebruikersnaam:</label>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" class="text-field">
+        
+        <label for="id_password">Wachtwoord:</label>
+        <input type="password" name="password" autocomplete="current-password" required="" id="id_password" class="text-field">
+
+        
+      <button type="submit" class="submit-button">Inloggen</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+</body>

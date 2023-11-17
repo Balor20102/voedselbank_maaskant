@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/css/Homepagedirectie.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePagina</title>
+</head>
+<body>
+    <div class="header">
+
+    </div>
+    <div class="content">
+        <div class="Item">
+            <div class="top" >
+                <h1 class="top-title">Familie</h1>
+            </div>
+            <div class="top-text">
+                <P class="firsttxt">Aantal families</P>
+                <p class="firsttxt">10</p>
+            </div>
+            <div class="top-text">
+                <P class="secondtxt">een familie toevoegen?</P>
+                <p class="secondtxt">overzicht families bekijken?</p>
+            </div>
+            <div class="top-text">
+                <a class="txtbtn"><span>Toevoegen</span></a>
+                <a class="txtbtn"><span>Overzicht</span></a>
+            </div>
+        </div>
+        <div class="Item">
+                <div class="top">
+                    <h1 class="top-title">Leverancier</h1>
+                </div>
+                <div class="top-text">
+                    <P class="firsttxt">totaal aantal Leveranciers:</P>
+                    <p class="firsttxt">595</p> 
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">Een leverancier toevoegen?</P>
+                    <p class="secondtxt">Leverancier overzicht bekijken?</p>
+                </div>
+                <div class="top-text">
+                    <a class="txtbtn"><span>Toevoegen</span></a>
+                    <a class="txtbtn"><span>Overzicht</span></a>
+                </div>
+        </div>
+        <div class="Item">
+                <div class="top">
+                    <h1 class="top-title">werkernemer of vrijwilliger</h1>
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">een werknemer/vrijwilliger toevoegen?</P>
+                    <p class="secondtxt">Overzicht Medewerkers zien</p>
+                </div>
+                <div class="top-text">
+                    <a class="txtbtn"><span>Toevoegen</span></a>
+                    <a class="txtbtn"><span>Overzicht</span></a>
+                </div>
+        </div>
+        <div class="Item">
+                <div class="top">
+                    <h1 class="top-title">Categorieën</h1>
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">Categorieën aanmaken</P>
+                    <p class="secondtxt">Categorieën zien/aanpassen</p>
+                </div>
+                <div class="top-text">
+                    <a class="txtbtn" href="{% url 'create_catagorie' %}"><span>Toevoegen</span></a>
+                    <a class="txtbtn" href="{% url 'catagorieën' %}"><span>Overzicht</span></a>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

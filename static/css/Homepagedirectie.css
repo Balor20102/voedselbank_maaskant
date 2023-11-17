@@ -1,0 +1,62 @@
+.content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+.Item{
+    width: 40%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    background-color: #F0FFF2;
+    display: flex;
+    flex-direction: column;
+    display: inline-flex;
+    padding-bottom: 20px;
+}
+.top{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    background-color: #B8FFB8;
+    border-radius: 20px 20px 0px 0px;
+    margin: 0px;
+    padding: 10px;
+}
+.top-text{
+    display: flex;
+    justify-content: space-around;
+}
+.firsttxt{
+    font-size: 32px;
+    margin-left: 5px;
+}
+.secondtxt{
+    font-size: 22px;
+    margin-left: 10px;
+}
+.txtbtn{
+    width: 200px;
+    height: 75px;
+    border-radius: 30px;
+    border: 1px solid black;
+    background-color: #B8B8FF;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    display: inline-block;
+    line-height: 2.2em;
+}
+.top-title{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0px;
+}

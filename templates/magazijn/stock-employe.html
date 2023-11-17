@@ -1,0 +1,59 @@
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+{% load magazijn_extras %}
+<form method="GET" class="grid-products">
+
+    <div id= "zoekbak">
+        {{ filter.form.searchbar }}
+        <button type="submit" class= "submit-zoekbak"><img class= 'looking-glass'src='{% static "image/looking_glass.png" %}'></button>
+    </div>
+
+
+    <div id = "item1">
+        <div>
+            <a class= "card-btn" href= "{% url 'add-stock' %}">product toevoegen</a>
+        </div>
+        <div>
+            
+            {% for field in filter2.form %}
+            <strong>{{ field.label_tag }}</strong>
+                {{ field }}
+            {% endfor %}
+            <br>
+            <button type="submit" class= "zoek-btn"><strong>Zoeken</strong> <img src='{% static "image/looking_glass.png" %}'></button>
+        </div>
+
+    </div>  
+
+    <div id ='item2'> 
+        <div class= 'flex-products'> 
+        {% for product in page_obj %}
+            {% include "components/stock-card.html" with product=product %}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div id='item3'>
+        <span class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
+            {% endif %}
+        
+            {% for i in page_obj.paginator.page_range %}
+            {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4 %}
+                <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == page_obj.number %}class="active"{% endif %}>{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        
+            {% if page_obj.has_next %}
+                <a href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</form>
+
+    {% endblock content %}
