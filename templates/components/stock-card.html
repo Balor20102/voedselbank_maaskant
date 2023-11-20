@@ -1,6 +1,6 @@
 {% load static %}
 <div class="product">
-    <img src ="{{ product.Afbeelding.url }}" class= 'image-card'>
+    <img src ="{{ product.afbeelding.url }}" class= 'image-card'>
     <div>
         <p>{{ product.name }}</p>
         <p>{{ product.voorraad }}</p>
@@ -8,6 +8,6 @@
 
     <div>
         <a href="#" class = "card-btn" >Bekijken</a>
-        <a href="#" class = "card-btn">Aanpassen</a>
+        <a href="{% url 'update-stock' id=product.id %}" class = "card-btn">Aanpassen</a>
     </div>
 </div>

@@ -9,4 +9,7 @@ class Leverancier(models.Model):
     email = models.EmailField()
     leveringsdatum = models.DateField()
 
+    def __str__(self):
+        return self.bedrijfsnaam
+
 

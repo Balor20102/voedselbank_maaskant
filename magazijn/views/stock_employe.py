@@ -21,7 +21,7 @@ class StockEmployeView(View):
             'filter2': sq_filters2,
         }
 
-        paginated_filter = Paginator(sq_filters2.qs, 1)
+        paginated_filter = Paginator(sq_filters2.qs, 10)
         page_number = request.GET.get('page')
         page_obj = paginated_filter.get_page(page_number)
 
