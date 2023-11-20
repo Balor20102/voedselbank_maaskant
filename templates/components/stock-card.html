@@ -7,7 +7,7 @@
     </div>
 
     <div>
-        <a href="#" class = "card-btn" >Bekijken</a>
+        <a href=" {% url 'product-item' id=product.id %}" class = "card-btn" >Bekijken</a>
         <a href="{% url 'update-stock' id=product.id %}" class = "card-btn">Aanpassen</a>
     </div>
 </div>

@@ -15,4 +15,7 @@ class ProductItem(models.Model):
     leverancier = models.ForeignKey("directie.Leverancier", on_delete=models.DO_NOTHING, null=True)
     houdsbaarheiddatum = models.DateField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
+
+    def __str__(self):
+        return f"{self.product} {self.leverancier}"
     
