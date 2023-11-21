@@ -24,6 +24,7 @@ class UpdateStockView(View):
         form = self.form_class(request.POST, request.FILES, instance=Product.objects.get(id=id))
         if form.is_valid():
             form.save()
+            
             return redirect('stock-employe')
         
 

@@ -26,8 +26,8 @@ class AddStockView(View):
 
         if form.is_valid() and form2.is_valid():
             stock = form.cleaned_data['voorraad']
-            product = form.save(commit=False)
-            product.save()
+            product = form.save()
+            
             productItem = form2.save(commit=False)
             productItem.product = product
             for x in range(stock):
@@ -35,7 +35,7 @@ class AddStockView(View):
                 productItem.save()
             
 
-            return redirect('add-stock')
+            return redirect('stock-employe')
 
         context = {
         'form': form,
