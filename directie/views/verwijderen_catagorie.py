@@ -3,9 +3,8 @@ from directie.forms import createcategorieënform
 from magazijn.models import Catagorie
 from django.shortcuts import get_object_or_404
 
-def verwijder_catagorie(request, char_field_value):
-    obj = get_object_or_404(Catagorie, char_field=char_field_value)
+def verwijder_catagorie(request, id):
+    obj = Catagorie.objects.get(pk=id)
     obj.delete()
-    catagorieën = Catagorie.objects.all()
-    context = {'catagorieen': catagorieën}
-    return render(request, 'directie/Categorieënoverzicht.html', context)
+    return redirect('catagorieën')
+

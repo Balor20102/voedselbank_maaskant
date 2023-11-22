@@ -16,11 +16,11 @@
       <div class="categorie">
         <div class="topbar">
           <div class="topbar_title">
-            <h1>Categorie toevoegen</h1>
+            <h1>Categorie aanpassen</h1>
           </div>
         </div>
         <div class="content_tab">
-          <form method="post" action="{% url 'create-catagorie' %}">
+          <form method="post" action="{% url 'catagorie-aanpassen' %}">
             {% csrf_token %} {{ form.as_p }}
             <button type="submit">Submit</button>
           </form>
