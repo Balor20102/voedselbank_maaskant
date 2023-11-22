@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="content_tab">
-          <form method="post" action="{% url 'catagorie-aanpassen' %}">
+          <form method="post" action="{% url 'catagorie-aanpassen' id=id %}">
             {% csrf_token %} {{ form.as_p }}
             <button type="submit">Submit</button>
           </form>
