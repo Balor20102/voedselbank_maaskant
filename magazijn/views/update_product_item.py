@@ -15,7 +15,8 @@ class UpdateProductItem(View):
         form = self.form_class(instance=productitem)
         context = {
         'form': form,
-        'product': product
+        'product': product,
+        'productitem': productitem
         }
 
         return render(request, self.template_name, context)
@@ -34,6 +35,7 @@ class UpdateProductItem(View):
         
         context = {
         'form': form,
-        'product': product
+        'product': product,
+        'productitem': productitem
         }
         render(request, self.template_name, context)

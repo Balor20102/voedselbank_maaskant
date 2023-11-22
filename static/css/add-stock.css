@@ -5,7 +5,6 @@
     background-color: #F0FFF2;
     border-radius:20px;
     min-width: 70%
-
 }
 
 .stock-form{
@@ -62,4 +61,26 @@
     margin: 0%;
     border-radius: 20px 20px 0px 0px;
     text-align: center;
+}
+
+.center-screen{
+    padding: 1rem;
+    padding-top: 3rem;
+}
+
+.flex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.tiny-form{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #F0FFF2;
+    border-radius:20px;
+    min-width: 50%
 }

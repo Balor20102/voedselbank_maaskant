@@ -14,7 +14,7 @@ class ProductItemView(LoginRequiredMixin, View):
     template_name = 'magazijn/product_item_overzicht.html'
     model = ProductItem
     model2 = Product
-    paginate_by = 10
+    paginate_by = 6
 
     def get(self, request, id, *args, **kwargs):
         productitem = ProductItem.objects.filter(product__id=id).order_by('houdsbaarheiddatum')

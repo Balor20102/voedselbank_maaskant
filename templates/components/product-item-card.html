@@ -1,0 +1,13 @@
+{% load static %}
+<div class="product">
+    <img src ="{{ product.afbeelding.url }}" class= 'image-card'>
+    <div>
+        <h3>{{ productitem.houdsbaarheiddatum}}</h3>
+        <p>{{ productitem.id }}</p>
+        <p>{{productitem.leverancier}}</p>
+    </div>
+
+    <div>
+        <a href="{% url 'product-item-update' id=product.id iditem=productitem.id %}" class="card-btn">Aanpassen</a>
+    </div>
+</div>

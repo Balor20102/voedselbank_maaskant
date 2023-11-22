@@ -4,7 +4,9 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
+    align-items: center;
 }
+
 .Item{
     width: 40%;
     border-width: 1px;

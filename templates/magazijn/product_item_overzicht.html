@@ -3,43 +3,49 @@
 {% load static %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
     <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Homepagedirectie.css' %}">
+    
 {% endblock stylesheets %}
 
 
 {% block content %}
-    <div>
+    <div class="center-screen">
+        <div class="form">
+            <div class=" content top">
+                <div>
+                    <a href="{% url 'product-item-add' id=product.id %}" class = "card-btn">Toevoegen</a>
+                </div>
+                <h2 class = "card-header">{{product.name}}</h2>
+                <div>
+                    <a href="{% url 'update-stock' id=product.id %}" class = "card-btn">Aanpassen</a>
+                </div>
+            </div>
+            <div class="flex">
+
+                {% for productitem in page_obj %}
+                    {% include "components/product-item-card.html" with product=product productitem=productitem %}
+                {% endfor %}
+
+            </div>
+            <div id='item3'>
+                <span class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
+                    {% endif %}
+                
+                    {% for i in page_obj.paginator.page_range %}
+                    {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4 %}
+                        <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == page_obj.number %}class="active"{% endif %}>{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                
+                    {% if page_obj.has_next %}
+                        <a href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
     </div>
 {% endblock content %}
-{% comment %} <a href="{% url 'product-item-add' id=product.id %}" class = "card-btn">Toevoegen</a>
-
-{% for productitem in page_obj %}
-<img src = "{{product.afbeelding.url}}" alt = "{{product.afbeelding.alt}}" width = "200" height = "200">
-{{productitem.id}}
-
-{{productitem.houdsbaarheiddatum}}
-
-{{productitem.leverancier}}
-
-<a href="{% url 'product-item-update' id=product.id iditem=productitem.id %}" class = "card-btn">Aanpassen</a>
-
-
-{% endfor %} {% endcomment %}
-
-<div id='item3'>
-    <span class="pagination">
-        {% if page_obj.has_previous %}
-            <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
-        {% endif %}
-    
-        {% for i in page_obj.paginator.page_range %}
-        {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4 %}
-            <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == page_obj.number %}class="active"{% endif %}>{{ i }}</a>
-        {% endif %}
-    {% endfor %}
-    
-        {% if page_obj.has_next %}
-            <a href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
-        {% endif %}
-    </span>
-</div>
