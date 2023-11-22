@@ -65,7 +65,6 @@
     justify-content: space-between;
     align-items: center;
     width: 200px;
-    height: 200px;
     margin: 20px;
     margin-left: 0%;
     padding: 6px;
@@ -85,7 +84,6 @@
 
 .card-btn{
  background-color: #B8B8FF;
- padding: 0.3rem;
  border-radius: 20px;
  color: black;
  text-decoration: none;

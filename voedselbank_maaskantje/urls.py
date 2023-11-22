@@ -21,7 +21,13 @@ from django.conf.urls.static import static
 from login.views import LoginView, home
 from directie.views import create_catagorie, catagorieën, directiehomepage, verwijder_catagorie
 
-from magazijn.views import StockEmployeView, AddStockView
+from magazijn.views import (StockEmployeView, 
+                            AddStockView, 
+                            UpdateStockView, 
+                            ProductItemView,
+                            AddProductItem,
+                            UpdateProductItem)
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", LoginView.as_view(), name="login"),
@@ -33,6 +39,10 @@ urlpatterns = [
     path('verwijder_catagorie/<int:id>/', verwijder_catagorie, name='verwijder_catagorie'),
     path("voorraad-medewerker/", StockEmployeView.as_view(), name="stock-employe"),
     path("voorraad-medewerker/toevoegen/", AddStockView.as_view(), name="add-stock"),
+    path("voorraad-medewerker/update/<int:id>", UpdateStockView.as_view(), name="update-stock"),
+    path("product/overzicht/<int:id>", ProductItemView.as_view(), name="product-item"),
+    path("product/overzicht/<int:id>/toevoegen", AddProductItem.as_view(), name="product-item-add"),
+    path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),	
 ]
 
 if settings.DEBUG:

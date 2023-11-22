@@ -16,8 +16,8 @@ class ProductFilter(django_filters.FilterSet):
             Q(name__icontains=value) | Q(EAN__iexact=value)
         )
 class CategorieProduct(django_filters.FilterSet):
-    author = django_filters.ModelMultipleChoiceFilter(
-        field_name='Catagorieën',
+    catagorie = django_filters.ModelMultipleChoiceFilter(
+        field_name='catagorieën',
         to_field_name='id',
         queryset=Catagorie.objects.all(),
         widget=forms.CheckboxSelectMultiple,

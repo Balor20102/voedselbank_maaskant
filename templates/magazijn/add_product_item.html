@@ -1,0 +1,41 @@
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class='center-screen'>
+    <div class="tiny-form">
+        {% if productitem %}
+            <!-- If productitem is present (not None or falsy) -->
+            <h3 class="card-header">product aanpassen</h3>
+        {% else %}
+            <!-- If productitem is not present (None or falsy) -->
+            <h3 class="card-header">product toevoegen</h3>
+        {% endif %}
+        <form method = "POST" enctype="multipart/form-data" class="stock-form">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class='field-form'>
+                {{ field.errors }}
+                
+                {% if field.name == 'veganistisch' or field.name == 'vegataries' or field.name == 'varkesvlees' %}
+                    {{field.label_tag}}
+                    {{ field }}
+                {% else %}
+                    {{field.label_tag}}<br>
+                    {{ field }}<br>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class='flex-reverse'>
+                <input type="submit" value="Toevoegen" class='submit'>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
+```
