@@ -26,7 +26,8 @@ from magazijn.views import (StockEmployeView,
                             UpdateStockView, 
                             ProductItemView,
                             AddProductItem,
-                            UpdateProductItem)
+                            UpdateProductItem,
+                            DeleteProductItem)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -42,7 +43,8 @@ urlpatterns = [
     path("voorraad-medewerker/update/<int:id>", UpdateStockView.as_view(), name="update-stock"),
     path("product/overzicht/<int:id>", ProductItemView.as_view(), name="product-item"),
     path("product/overzicht/<int:id>/toevoegen", AddProductItem.as_view(), name="product-item-add"),
-    path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),	
+    path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),
+    path("product/overzicht/<int:id>/verwijderen/<int:iditem>", DeleteProductItem.as_view(), name="product-item-delete"),	
 ]
 
 if settings.DEBUG:

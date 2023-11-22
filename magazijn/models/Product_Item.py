@@ -5,7 +5,7 @@ class ProductItem(models.Model):
 
     STATUS_CHOICES = (
         (1, 'Goed'),
-        (2, 'Beschadigd'),
+        (2, 'in pakket'),
         (3, 'Verlopen'),
         (4, 'Verdwenen'),
     )

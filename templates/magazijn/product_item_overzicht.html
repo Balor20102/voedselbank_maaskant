@@ -25,7 +25,9 @@
             <div class="flex">
 
                 {% for productitem in page_obj %}
-                    {% include "components/product-item-card.html" with product=product productitem=productitem %}
+                    {% if productitem.status == 1 %}
+                        {% include "components/product-item-card.html" with product=product productitem=productitem %}
+                    {% endif %}
                 {% endfor %}
 
             </div>

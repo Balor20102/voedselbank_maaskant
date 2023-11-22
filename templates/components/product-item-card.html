@@ -1,13 +1,17 @@
 {% load static %}
-<div class="product">
+<div class="product" style="{% if productitem.houdsbaarheiddatum|date:'Y-m-d' < now|date:'Y-m-d' %}background-color: red;{% endif %}">
     <img src ="{{ product.afbeelding.url }}" class= 'image-card'>
     <div>
-        <h3>{{ productitem.houdsbaarheiddatum}}</h3>
+        <h3>{{ productitem.houdsbaarheiddatum|date:'Y-m-d'}}</h3>
         <p>{{ productitem.id }}</p>
         <p>{{productitem.leverancier}}</p>
     </div>
 
     <div>
+        {% if productitem.houdsbaarheiddatum|date:'Y-m-d' < now|date:'Y-m-d' %}
+        <a href="{% url 'product-item-delete' id=product.id iditem=productitem.id %}" class="card-btn">verwijderen</a>
+        {% else %}
         <a href="{% url 'product-item-update' id=product.id iditem=productitem.id %}" class="card-btn">Aanpassen</a>
+        {% endif %}
     </div>
 </div>
