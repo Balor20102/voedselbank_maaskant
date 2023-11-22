@@ -1,6 +1,17 @@
 {% load magazijn_extras %}
 
-<a href="{% url 'product-item-add' id=product.id %}" class = "card-btn">Toevoegen</a>
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+{% endblock stylesheets %}
+
+
+{% block content %}
+    <div>
+    </div>
+{% endblock content %}
+{% comment %} <a href="{% url 'product-item-add' id=product.id %}" class = "card-btn">Toevoegen</a>
 
 {% for productitem in page_obj %}
 <img src = "{{product.afbeelding.url}}" alt = "{{product.afbeelding.alt}}" width = "200" height = "200">
@@ -13,7 +24,7 @@
 <a href="{% url 'product-item-update' id=product.id iditem=productitem.id %}" class = "card-btn">Aanpassen</a>
 
 
-{% endfor %}
+{% endfor %} {% endcomment %}
 
 <div id='item3'>
     <span class="pagination">

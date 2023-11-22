@@ -6,28 +6,30 @@
 
 {% block content %}
 <div class='center-screen'>
-    <form method = "POST" enctype="multipart/form-data" class="stock-form">
-        <h3>product toevoegen</h3>
-        {% csrf_token %}
+    <div class="form">
+        <h3 class = "card-header">product update</h3>
+        <form method = "POST" enctype="multipart/form-data" class="stock-form">
+            {% csrf_token %}
 
-        {% for field in form %}
-        <div class='field-form'>
-            {{ field.errors }}
-            
-            {% if field.name == 'veganistisch' or field.name == 'vegataries' or field.name == 'varkesvlees' %}
-                {{field.label_tag}}
-                {{ field }}
-            {% else %}
-                {{field.label_tag}}<br>
-                {{ field }}<br>
-            {% endif %}
-        </div>
-        {% endfor %}
+            {% for field in form %}
+            <div class='field-form'>
+                {{ field.errors }}
+                
+                {% if field.name == 'veganistisch' or field.name == 'vegataries' or field.name == 'varkesvlees' %}
+                    {{field.label_tag}}
+                    {{ field }}
+                {% else %}
+                    {{field.label_tag}}<br>
+                    {{ field }}<br>
+                {% endif %}
+            </div>
+            {% endfor %}
 
-        <div class='flex-reverse'>
-            <input type="submit" value="Toevoegen" class='submit'>
-        </div>
-    </form>
+            <div class='flex-reverse'>
+                <input type="submit" value="Toevoegen" class='submit'>
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

@@ -1,22 +1,24 @@
+.form{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #F0FFF2;
+    border-radius:20px;
+    min-width: 70%
+
+}
+
 .stock-form{
     margin: 0;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    background-color: #B8FFB8;
+    background-color: #F0FFF2;
     border-radius:20px;
-
     min-width: 70%
 }
 
 
-.stock-form h3{
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1rem;
-    text-align: center;
-
-}
 .field-form{
     margin-bottom: 1rem;
 }
@@ -52,4 +54,12 @@
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
+}
+
+.card-header{
+    background-color: #B8FFB8;
+    padding: 0.5rem;
+    margin: 0%;
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
 }
