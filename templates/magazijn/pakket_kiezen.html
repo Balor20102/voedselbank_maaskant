@@ -1,0 +1,8 @@
+{% load static %}
+
+{% block content %}
+    {% for klant in klant %}
+    <a href="{% url 'pakket' pk=klant.pk %}">{{ klant.gezinsnaam }}</a><br>
+    {% endfor %}
+{% endblock content %}
+```

@@ -4,15 +4,19 @@ from django.contrib import admin
 
 from .models import Product, ProductItem, Catagorie, Pakket
 
+class ProductInline(admin.TabularInline):
+    model = ProductItem
+    extra = 1  # Number of empty forms to display
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'EAN', 'varkesvlees', 'vegataries', 'veganistisch')
+    list_display = ('name', 'EAN','voorraad', 'varkesvlees', 'vegataries', 'veganistisch')
     list_filter = ('varkesvlees', 'vegataries', 'veganistisch')
     search_fields = ('name', 'EAN')
     ordering = ['name']
 
 
 class ProductItemAdmin(admin.ModelAdmin):
-    list_display = ('product', 'leverings_datum', 'status')
+    list_display = ('product','pakket','status', 'leverings_datum', 'status')
     list_filter = ('status',)
     search_fields = ('product', )
     ordering = ['product']
@@ -29,6 +33,7 @@ class PakketAdmin(admin.ModelAdmin):
     list_filter = ('gezinsnaam',)
     search_fields = ('gezinsnaam',)
     ordering = ['gezinsnaam']
+    inlines = [ProductInline]
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductItem, ProductItemAdmin)
