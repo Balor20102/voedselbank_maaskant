@@ -42,6 +42,8 @@ urlpatterns = [
     path("pakket/<int:pk>", PakketView.as_view(), name="pakket"),	
     path("pakket_kiezen/", ChoicePackage.as_view(), name="pakket_kiezen"),
     path("pakket/toevoegen/<int:product>/<int:pakket>/<int:hoeveel>", ToevoegenPakketView.as_view(), name="toevoegen_pakket"),
+    path("pakketten/<int:id>", PakketDetailView.as_view(), name="pakketten_detail"),
+    path("pakketten/verwijderen/<int:product>/<int:pakket>/<int:hoeveel>", VerwijderenPakketView.as_view(), name="pakketten_verwijderen"),
 ]
 
 if settings.DEBUG:

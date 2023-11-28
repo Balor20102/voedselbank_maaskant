@@ -29,7 +29,7 @@ class CatagorieAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 class PakketAdmin(admin.ModelAdmin):
-    list_display = ('gezinsnaam', 'uitgiftdatum')
+    list_display = ('gezinsnaam', 'uitgiftdatum', 'aangemaakt_op')
     list_filter = ('gezinsnaam',)
     search_fields = ('gezinsnaam',)
     ordering = ['gezinsnaam']

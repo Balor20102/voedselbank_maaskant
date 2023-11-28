@@ -8,3 +8,5 @@ from .product_item_verwijderen import DeleteProductItem
 from .pakket import PakketView
 from .pakket_kiezen import ChoicePackage
 from .toevoegen_aan_pakket import ToevoegenPakketView
+from .pakket_detail import PakketDetailView
+from .pakket_verwijderen import VerwijderenPakketView
