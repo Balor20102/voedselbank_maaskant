@@ -2,6 +2,7 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
     <link rel="stylesheet" href="{% static 'css/pakketten.css' %}">
 {% endblock stylesheets %}
 
@@ -9,8 +10,10 @@
     <div class='center-screen'>
         <div class="form">
             <h3 class = "card-header">{{pakket.gezinsnaam}} - {{pakket.aangemaakt_op}}</h3>
-            <div class="stock-form">
-                <a href="{% url 'pakket' pk=klant.pk %}">{{ klant.gezinsnaam }}</a><br>
+            <form class="stock-form">
+                <div>
+                <a class='card-btn' href="{% url 'pakket' pk=klant.pk %}">terug</a>
+                </div>
                 {% csrf_token %}
                 <table class='pakket-item'>
                     <tr>
@@ -31,9 +34,9 @@
                     {% endfor %}
                 </table>
                 <div class='flex-reverse'>
-                    <a href={% url 'pakket_kiezen' %}>pakket klaar</a>
+                    <a class='card-btn' href={% url 'pakket_kiezen' %}>pakket klaar</a>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 {% endblock content %}
