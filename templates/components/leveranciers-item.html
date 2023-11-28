@@ -1,0 +1,11 @@
+{% load static %}
+
+<tr class="row">
+    <td class="collum"><p>{{ leveranciers.name }}</p></td>
+    {{cate}}
+    <td class="collum"><p>{{ leveranciers.leveringsdatum }}</p></td>
+    <td class="collum"><a class="btn" href="{% url 'leveranciers-aanpassen' id=leveranciers.id %}"><span>Aanpassen</span><a/></td> 
+    <td class="collum">
+        <a class="rmvbtn" href="{% url 'verwijder-leverancier' id=leveranciers.id %}"><span>Verwijderen</span></a>
+    </td>
+</tr>

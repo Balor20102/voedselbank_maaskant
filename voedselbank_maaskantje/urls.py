@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from login.views import LoginView, home
-from directie.views import create_catagorie, catagorieën, directiehomepage, verwijder_catagorie, catagorie_aanpassen
+from directie.views import *
 
 from magazijn.views import StockEmployeView, AddStockView
 urlpatterns = [
@@ -34,6 +34,8 @@ urlpatterns = [
     path('verwijder-catagorie/<int:id>/', verwijder_catagorie, name='verwijder-catagorie'),
     path("voorraad-medewerker/", StockEmployeView.as_view(), name="stock-employe"),
     path("voorraad-medewerker/toevoegen/", AddStockView.as_view(), name="add-stock"),
+    # path("leveranciers/", leveranciers, name="leveranciers"),
+    path("leveranciers/toevoegen/", create_leveranciers, name="add-leverancier"),
 ]
 
 if settings.DEBUG:
