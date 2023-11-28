@@ -16,6 +16,7 @@ class ProductItem(models.Model):
     houdsbaarheiddatum = models.DateField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     pakket = models.ForeignKey("magazijn.Pakket", on_delete=models.SET_NULL, null=True)
+    leverings_datum = models.DateField(auto_now_add=True)
 
     def __str__(self):
         if self.product:
