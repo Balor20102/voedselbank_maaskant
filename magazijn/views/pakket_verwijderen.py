@@ -30,5 +30,6 @@ class VerwijderenPakketView(LoginRequiredMixin, View):
                 product_item.pakket = None
                 product_item.status = 1
                 product_item.save()
-                product.voorraad += 1
+                product.voorraad = product.voorraad + 1
+                product.save()
         return redirect('pakketten_detail', id=pakket.id)

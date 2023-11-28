@@ -16,7 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class ProductItemAdmin(admin.ModelAdmin):
-    list_display = ('product','pakket','status', 'leverings_datum', 'status')
+    list_display = ('product','pakket','status', 'houdsbaarheiddatum', 'leverings_datum')
     list_filter = ('status',)
     search_fields = ('product', )
     ordering = ['product']
