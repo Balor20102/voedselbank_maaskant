@@ -10,11 +10,21 @@
     <div class='center-screen'>
         <div class="form">
             <h3 class = "card-header">{{pakket.gezinsnaam}} - {{pakket.aangemaakt_op}}</h3>
-            <form class="stock-form">
-                <div>
-                <a class='card-btn' href="{% url 'pakket' pk=klant.pk %}">terug</a>
-                </div>
+            <form class="stock-form" method='POST'>
                 {% csrf_token %}
+                <div class='flex'>
+                <div>
+                    <a class='card-btn' href="{% url 'pakket' pk=klant.pk %}">terug</a>
+                </div>
+                <div class='tiny-form'>
+                    {% for field in form %}
+                    {{field.label_tag}}
+                    <div class="field-form">
+                    {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
                 <table class='pakket-item'>
                     <tr>
                         <th>Product</th>
@@ -34,7 +44,7 @@
                     {% endfor %}
                 </table>
                 <div class='flex-reverse'>
-                    <a class='card-btn' href={% url 'pakket_kiezen' %}>pakket klaar</a>
+                    <input class='card-btn' type="submit" value="pakket klaar" class='submit'>
                 </div>
             </form>
         </div>
