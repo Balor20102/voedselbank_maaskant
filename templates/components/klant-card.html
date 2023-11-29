@@ -1,0 +1,39 @@
+{% load static %}
+<div class="klant-card">
+    <div class="card-header">
+    <h3> Familie {{ klant.gezinsnaam }} </h3>
+    </div>
+    <div>
+        <p><strong>Volwassenen:</strong> {{ klant.volwassenen }}</p>
+        <p><strong>Kinderen:</strong> {{ klant.kinderen }}</p>
+        <p><strong>Babies:</strong> {{ klant.babies }}</p>
+        <p class="tooltip"><strong class='underline'>Wensen</strong>
+            <span class="tooltiptext">
+                {% if klant.varkesvlees == True %}
+                &#x2022; Varkensvlees<br>
+                {% endif %}
+                {% if klant.vegataries == True %}
+                &#x2022; Vegataries<br>
+                {% endif %}
+                {% if klant.veganistisch == True %}
+                &#x2022; Veganistisch<br>
+                {% endif %}
+                {% if klant.allergieen %}
+                {% endif %}
+            </span>
+        </p>
+
+        <p class="tooltip"><strong class='underline'>Alergieën</strong>
+            <span class="tooltiptext">
+                {% for allergie in klant.alergieën.all %}
+                &#x2022; {{ allergie.name }} <br>
+                {% endfor %}
+            </span>
+        </p>
+
+    </div>
+
+    <div>
+        <a class = "card-btn" href="{% url 'pakket' pk=klant.pk %}">pakket samenstellen</a>
+    </div>
+</div>

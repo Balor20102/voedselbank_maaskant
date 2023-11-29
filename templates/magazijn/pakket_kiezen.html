@@ -1,8 +1,41 @@
 {% load static %}
-
-{% block content %}
-    {% for klant in klant %}
-    <a href="{% url 'pakket' pk=klant.pk %}">{{ klant.gezinsnaam }}</a><br>
-    {% endfor %}
-{% endblock content %}
-```
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+    {% endblock stylesheets %}
+    
+    {% block content %}
+    {% load magazijn_extras %}
+    <form method="GET" class="grid-products">
+    
+    
+        <div id ='item2'> 
+            <div class= 'flex-products'> 
+            {% for klant in klanten_page %}
+                {% include "components/klant-card.html" with klant=klant %}
+            {% endfor %}
+            </div>
+        </div>
+    
+        <div id='item3'>
+            <span class="pagination">
+                {% if klanten_page.has_previous %}
+                    <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
+                {% endif %}
+            
+                {% for i in klanten_page.paginator.page_range %}
+                {% if i >= klanten_page.number|add:-4 and i <= klanten_page.number|add:4 %}
+                    <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == klanten_page.number %}class="active"{% endif %}>{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+            
+                {% if klanten_page.has_next %}
+                    <a href="{% my_url klanten_page.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </form>
+    
+        {% endblock content %}
+    
