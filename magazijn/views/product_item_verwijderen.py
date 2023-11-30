@@ -12,6 +12,7 @@ class DeleteProductItem(View):
         productitem.status = 3
         productitem.save()
         product = Product.objects.get(id=id)
-        product.voorraad -= 1
-        product.save()
+        if product.voorraad > 0:
+            product.voorraad -= 1
+            product.save()
         return redirect('product-item', id=id)
