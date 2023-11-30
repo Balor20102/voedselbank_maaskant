@@ -6,7 +6,7 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="../../static/css/catagorieënoverzicht.css"
+      href="../../static/css/overzicht.css"
     />
     <title>Document</title>
   </head>
@@ -29,7 +29,7 @@
               <td class="collum"><p>verwijderen</p></td>
             </tr>
             {% for categorie in catagorieen %}
-                {% include "components/Catagorieitem.html" with categorie=categorie %}
+                {% include "components/Catagorie-item.html" with categorie=categorie %}
             {% endfor %}
           </table>
           </div>

@@ -1,0 +1,9 @@
+{% load static %}
+
+<tr class="row">
+    <td class="collum"><p>{{ familie.gezinsnaam }}</p></td>
+    <td class="collum"><a class="btn" href="{% url 'klanten-aanpassen' id=familie.id %}"><span>Aanpassen</span><a/></td> 
+    <td class="collum">
+        <a class="rmvbtn" href="{% url 'verwijder-klanten' id=familie.id %}"><span>Verwijderen</span></a>
+    </td>
+</tr>

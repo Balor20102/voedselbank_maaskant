@@ -1,0 +1,10 @@
+{% load static %}
+
+<tr class="row">
+    <td class="collum"><p>{{ categorie.name }}</p></td>
+    {{cate}}
+    <td class="collum"><a class="btn" href="{% url 'catagorie-aanpassen' id=categorie.id %}"><span>Aanpassen</span><a/></td> 
+    <td class="collum">
+        <a class="rmvbtn" href="{% url 'verwijder-catagorie' id=categorie.id %}"><span>Verwijderen</span></a>
+    </td>
+</tr>

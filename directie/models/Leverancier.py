@@ -13,3 +13,4 @@ class Leverancier(models.Model):
         return self.bedrijfsnaam
 
 
+

@@ -23,8 +23,8 @@
                 <p class="secondtxt">overzicht families bekijken?</p>
             </div>
             <div class="top-text">
-                <a class="txtbtn"><span>Toevoegen</span></a>
-                <a class="txtbtn"><span>Overzicht</span></a>
+                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Toevoegen</span></a>
+                <a href= "{% url 'klanten' %}" class="txtbtn"><span>Overzicht</span></a>
             </div>
         </div>
         <div class="Item">
@@ -40,8 +40,8 @@
                     <p class="secondtxt">Leverancier overzicht bekijken?</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn"><span>Toevoegen</span></a>
-                    <a class="txtbtn"><span>Overzicht</span></a>
+                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'leveranciers' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>
         <div class="Item">
@@ -53,8 +53,8 @@
                     <p class="secondtxt">Overzicht Medewerkers zien</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn"><span>Toevoegen</span></a>
-                    <a class="txtbtn"><span>Overzicht</span></a>
+                    <a href="{% url 'medewerker-registratie' %}" class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'medewerkers' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>
         <div class="Item">
@@ -66,7 +66,7 @@
                     <p class="secondtxt">Categorieën zien/aanpassen</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn" href="{% url 'create_catagorie' %}"><span>Toevoegen</span></a>
+                    <a class="txtbtn" href="{% url 'create-catagorie' %}"><span>Toevoegen</span></a>
                     <a class="txtbtn" href="{% url 'catagorieën' %}"><span>Overzicht</span></a>
                 </div>
         </div>

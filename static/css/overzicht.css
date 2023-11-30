@@ -4,9 +4,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 20px;  
+    gap: 20px;
 }
-.categorie{
+
+.categorie {
     width: 40%;
     border-width: 1px;
     border-style: solid;
@@ -18,7 +19,8 @@
     display: inline-flex;
     padding-bottom: 20px;
 }
-.topbar{
+
+.topbar {
     text-align: center;
     font-size: 32px;
     font-weight: bold;
@@ -28,25 +30,29 @@
     margin: 0px;
     padding: 10px;
 }
-.content_tab{
+
+.content_tab {
     display: flex;
     flex-direction: row;
     padding: 10px;
 }
-.input{
+
+.input {
     border-radius: 20px;
     width: 100%;
     height: 20%;
     margin: 20px;
 }
-.label{
+
+.label {
     font-size: 22px;
     font-weight: bold;
     margin: 20px;
 }
-.btn{
-    width: 150px;
-    height: 50px;
+
+.btn {
+    width: 75%;
+    height: 75%;
     border-radius: 30px;
     margin: 20px;
     border: 1px solid black;
@@ -58,4 +64,45 @@
     align-self: center;
     align-content: center;
     display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 0.1rem;
+}
+
+.rmvbtn {
+    background-color: #FB0000;
+    width: 75%;
+    height: 75%;
+    border-radius: 30px;
+    margin: 20px;
+    border: 1px solid black;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 0.1rem;
+}
+
+.row {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    padding: 0px;
+    gap: 0px;
+    border-collapse: collapse;
+}
+
+.collum {
+    border: 1px solid black;
+    width: 100%;
+    padding: 5px;
+    gap: 0px;
 }

@@ -51,8 +51,8 @@
 }
 
 .btn {
-    width: 75%;
-    height: 75%;
+    width: 150px;
+    height: 50px;
     border-radius: 30px;
     margin: 20px;
     border: 1px solid black;
@@ -64,39 +64,5 @@
     align-self: center;
     align-content: center;
     display: inline-block;
-}
-
-.rmvbtn {
-    background-color: #FB0000;
-    width: 75%;
-    height: 75%;
-    border-radius: 30px;
-    margin: 20px;
-    border: 1px solid black;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    align-self: center;
-    align-content: center;
-    display: inline-block;
-}
-
-.row {
-    border: 1px solid black;
-    width: 100%;
-}
-
-.table {
-    width: 100%;
-    padding: 0px;
-    gap: 0px;
-    border-collapse: collapse;
-}
-
-.collum {
-    border: 1px solid black;
-    width: 100%;
-    padding: 5px;
-    gap: 0px;
+    text-decoration: none;
 }

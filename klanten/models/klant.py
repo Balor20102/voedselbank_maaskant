@@ -11,7 +11,7 @@ class Klant(models.Model):
     varkesvlees = models.BooleanField()
     vegataries = models.BooleanField()
     veganistisch = models.BooleanField()
-    alergieën = models.ManyToManyField("Alergie", related_name="klant")
+    alergieën = models.ManyToManyField("Alergie", related_name="klant", null=True, blank=True)
 
     def __str__(self):
         return self.gezinsnaam

@@ -8,7 +8,7 @@ def create_catagorie(request):
         form = createcategorieënform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('directiehomepage')  # Redirect to a success page or another view
+            return redirect('directie-homepage')  # Redirect to a success page or another view
     else:
         form = createcategorieënform()
 

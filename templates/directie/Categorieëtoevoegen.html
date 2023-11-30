@@ -6,7 +6,7 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="../../static/css/Categorieëtoevoegen.css"
+      href="../../static/css/form.css"
     />
     <title>Document</title>
   </head>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="content_tab">
-          <form method="post" action="{% url 'create_catagorie' %}">
+          <form method="post" action="{% url 'create-catagorie' %}">
             {% csrf_token %} {{ form.as_p }}
             <button type="submit">Submit</button>
           </form>
