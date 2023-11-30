@@ -23,8 +23,8 @@
                 <p class="secondtxt">overzicht families bekijken?</p>
             </div>
             <div class="top-text">
-                <a class="txtbtn"><span>Toevoegen</span></a>
-                <a class="txtbtn"><span>Overzicht</span></a>
+                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Toevoegen</span></a>
+                <a href= "{% url 'klanten' %}" class="txtbtn"><span>Overzicht</span></a>
             </div>
         </div>
         <div class="Item">
@@ -40,7 +40,7 @@
                     <p class="secondtxt">Leverancier overzicht bekijken?</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Toevoegen</span></a>
                     <a href="{% url 'leveranciers' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>

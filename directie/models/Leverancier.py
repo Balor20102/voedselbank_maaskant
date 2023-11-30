@@ -8,6 +8,6 @@ class Leverancier(models.Model):
     telefoon = models.IntegerField()
     email = models.EmailField()
     leveringsdatum = models.DateField()
-    leveringsfrequentie = models.IntegerField(null=True, blank=True)
+
 
 

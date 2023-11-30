@@ -24,13 +24,12 @@
           <div class="table">
             <table class="table">
             <tr class="row">
-              <td class="collum"><p>leverancier</p></td>
-              <td class="collum"><p>Leverings datum</p></td>
+              <td class="collum"><p>Familie</p></td>
               <td class="collum"><p>Bekijken</p></td>
               <td class="collum"><p>verwijderen</p></td>
             </tr>
-            {% for leverancier in Leveranciers %}
-                {% include "components/leveranciers-item.html" with leverancier=leverancier %}
+            {% for familie in Klanten %}
+                {% include "components/familie-item.html" with familie=familie %}
             {% endfor %}
           </table>
           </div>

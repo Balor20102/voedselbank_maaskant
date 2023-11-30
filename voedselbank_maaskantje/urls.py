@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from login.views import LoginView, home
 from directie.views import *
+from klanten.views import *
 
 from magazijn.views import StockEmployeView, AddStockView
 urlpatterns = [
@@ -34,8 +35,14 @@ urlpatterns = [
     path('verwijder-catagorie/<int:id>/', verwijder_catagorie, name='verwijder-catagorie'),
     path("voorraad-medewerker/", StockEmployeView.as_view(), name="stock-employe"),
     path("voorraad-medewerker/toevoegen/", AddStockView.as_view(), name="add-stock"),
-    # path("leveranciers/", leveranciers, name="leveranciers"),
+    path("leveranciers/", leveranciers, name="leveranciers"),
     path("leveranciers/toevoegen/", create_leveranciers, name="add-leverancier"),
+    path('verwijder-leveranciers/<int:id>/', verwijder_leveranciers, name='verwijder-leveranciers'),
+    path('leveranciers-aanpassen/<int:id>/', leveranciers_aanpassen, name='leveranciers-aanpassen'),
+    path('klanten/', klanten, name='klanten'),
+    path('klanten/toevoegen/', create_klanten, name='create-klanten'),
+    path('klanten-aanpassen/<int:id>/', klanten_aanpassen, name='klanten-aanpassen'),
+    path('verwijder-klanten/<int:id>/', verwijder_klanten, name='verwijder-klanten'),
 ]
 
 if settings.DEBUG:
