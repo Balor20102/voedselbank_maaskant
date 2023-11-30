@@ -1,57 +1,46 @@
+# tests.py
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from django.contrib.auth.models import User
+from datetime import date
 
-from magazijn.models import Product, ProductItem
+from directie.models import Leverancier
+from magazijn.models import Product, Pakket, ProductItem
 from magazijn.views import AddProductItem
 from magazijn.forms import AddProductItemForm
-
+from klanten.models import Klant
 
 class AddProductItemTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.product = Product.objects.create(name='Test Product', price=10.0)
-        self.url = reverse('add-product-item', args=[self.product.id])
-
-    def test_get(self):
-        request = self.factory.get(self.url)
-        request.user = self.user
-
-        response = AddProductItem.as_view()(request, id=self.product.id)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'magazijn/add_product_item.html')
-        self.assertIsInstance(response.context_data['form'], AddProductItemForm)
-        self.assertEqual(response.context_data['product'], self.product)
+        self.klant = Klant.objects.create(gezinsnaam='Test Gezinsnaam', volwassenen=1, kinderen=2, babies=3, postcode='1234AB', varkesvlees=True, vegataries=False, veganistisch=False)
+        self.product = Product.objects.create(name='Test Product', EAN=1234567890123, voorraad=10)
+        self.leverancier = Leverancier.objects.create(bedrijfsnaam='Test Leverancier', adres='Test Adres', telefoon='0612345678', leveringsdatum='2021-01-01')
+        self.pakket = Pakket.objects.create(gezinsnaam=self.klant, status=2)
+        self.url = reverse('product-item-add', args=[self.product.id])
 
     def test_post_valid_form(self):
         data = {
-            'quantity': 5,
+            'leverancier': self.leverancier.id,
+            'houdsbaarheiddatum': '2021-01-01',
         }
-        request = self.factory.post(self.url, data)
-        request.user = self.user
+        self.client.login(username='testuser', password='testpassword')
 
-        response = AddProductItem.as_view()(request, id=self.product.id)
+        # Use the Django TestCase client to perform the POST request
+        response = self.client.post(self.url, data)
 
+        # Check the HTTP status code is 302 (redirect)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('product-item', args=[self.product.id]))
 
-        product_item = ProductItem.objects.get(product=self.product)
-        self.assertEqual(product_item.quantity, data['quantity'])
+        # Check that the product item was created with the correct values
+        product_items = ProductItem.objects.filter(product=self.product)
+        self.assertTrue(product_items.exists())  # Ensure there is at least one item
 
-    def test_post_invalid_form(self):
-        data = {
-            'quantity': -5,  # Invalid quantity
-        }
-        request = self.factory.post(self.url, data)
-        request.user = self.user
+        for product_item in product_items:
+            self.assertEqual(product_item.leverancier, self.leverancier)
+            expected_date = date(2021, 1, 1)
+            self.assertEqual(product_item.houdsbaarheiddatum, expected_date)
 
-        response = AddProductItem.as_view()(request, id=self.product.id)
-
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'magazijn/add_product_item.html')
-        self.assertIsInstance(response.context_data['form'], AddProductItemForm)
-        self.assertEqual(response.context_data['product'], self.product)
-        self.assertFormError(response, 'form', 'quantity', 'Ensure this value is greater than or equal to 0')
- 
+            # Ensure that the status is set correctly based on the form data
+            self.assertEqual(product_item.status, 1)

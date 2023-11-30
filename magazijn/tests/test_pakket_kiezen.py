@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import timedelta
 
-from magazijn.models import Pakket, Klant
+from magazijn.models import Pakket
+from klanten.models import Klant
 from magazijn.views import ChoicePackage
 
 

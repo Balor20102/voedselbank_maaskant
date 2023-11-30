@@ -11,7 +11,7 @@ class ToevoegenPakketViewTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
         self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.url = reverse('toevoegen-pakket')
+        self.url = reverse('toevoegen_pakket')
 
     def test_get(self):
         # Create test data

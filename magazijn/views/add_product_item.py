@@ -11,8 +11,9 @@ class AddProductItem(View):
 
     def get(self, request, id):
         product = Product.objects.get(id=id)
+        form = self.form_class()
         context = {
-        'form': self.form_class,
+        'form': form,
         'product': product
         }
 
@@ -33,4 +34,4 @@ class AddProductItem(View):
         'form': form,
         'product': product
         }
-        render(request, self.template_name, context)
+        return render(request, self.template_name, context)

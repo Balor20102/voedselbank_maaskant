@@ -32,13 +32,16 @@ urlpatterns = [
     path('catagorieën/', catagorieën, name='catagorieën'),
     path('directiehomepage/', directiehomepage, name='directiehomepage'),
     path('verwijder_catagorie/<int:id>/', verwijder_catagorie, name='verwijder_catagorie'),
+
     path("voorraad-medewerker/", StockEmployeView.as_view(), name="stock-employe"),
     path("voorraad-medewerker/toevoegen/", AddStockView.as_view(), name="add-stock"),
     path("voorraad-medewerker/update/<int:id>", UpdateStockView.as_view(), name="update-stock"),
+
     path("product/overzicht/<int:id>", ProductItemView.as_view(), name="product-item"),
     path("product/overzicht/<int:id>/toevoegen", AddProductItem.as_view(), name="product-item-add"),
     path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),
     path("product/overzicht/<int:id>/verwijderen/<int:iditem>", DeleteProductItem.as_view(), name="product-item-delete"),
+    
     path("pakket/<int:pk>", PakketView.as_view(), name="pakket"),	
     path("pakket_kiezen/", ChoicePackage.as_view(), name="pakket_kiezen"),
     path("pakket/toevoegen/<int:product>/<int:pakket>/<int:hoeveel>", ToevoegenPakketView.as_view(), name="toevoegen_pakket"),

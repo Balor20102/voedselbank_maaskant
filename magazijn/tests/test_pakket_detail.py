@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Count
 
-from magazijn.models import Pakket, Product, ProductItem, Klant
+from magazijn.models import Pakket, Product, ProductItem
+from klanten.models import Klant
 from magazijn.views import PakketDetailView
 from magazijn.forms import UitgeefDatumForm
 

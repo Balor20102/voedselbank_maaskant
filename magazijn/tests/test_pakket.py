@@ -6,7 +6,8 @@ from datetime import timedelta
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
 
-from magazijn.models import Pakket, Product, ProductItem, Klant
+from magazijn.models import Pakket, Product, ProductItem
+from klanten.models import Klant
 from magazijn.views import PakketView
 from magazijn.filters import ProductFilter, CategorieProduct
 
