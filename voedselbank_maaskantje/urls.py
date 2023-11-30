@@ -22,12 +22,7 @@ from login.views import LoginView, home
 from directie.views import *
 from klanten.views import *
 
-from magazijn.views import (StockEmployeView, 
-                            AddStockView, 
-                            UpdateStockView, 
-                            ProductItemView,
-                            AddProductItem,
-                            UpdateProductItem)
+from magazijn.views import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -37,14 +32,24 @@ urlpatterns = [
     path('create-catagorie/', create_catagorie, name='create-catagorie'),
     path('catagorie-aanpassen/<int:id>/', catagorie_aanpassen, name='catagorie-aanpassen'),
     path('catagorieën/', catagorieën, name='catagorieën'),
+    path('directiehomepage/', directiehomepage, name='directiehomepage'),
+    path('verwijder_catagorie/<int:id>/', verwijder_catagorie, name='verwijder_catagorie'),
     path('directie-homepage/', directiehomepage, name='directie-homepage'),
     path('verwijder-catagorie/<int:id>/', verwijder_catagorie, name='verwijder-catagorie'),
     path("voorraad-medewerker/", StockEmployeView.as_view(), name="stock-employe"),
     path("voorraad-medewerker/toevoegen/", AddStockView.as_view(), name="add-stock"),
     path("leveranciers/", leveranciers, name="leveranciers"),
     path("voorraad-medewerker/update/<int:id>", UpdateStockView.as_view(), name="update-stock"),
+
     path("product/overzicht/<int:id>", ProductItemView.as_view(), name="product-item"),
     path("product/overzicht/<int:id>/toevoegen", AddProductItem.as_view(), name="product-item-add"),
+    path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),
+    path("product/overzicht/<int:id>/verwijderen/<int:iditem>", DeleteProductItem.as_view(), name="product-item-delete"),
+    path("pakket/<int:pk>", PakketView.as_view(), name="pakket"),	
+    path("pakket_kiezen/", ChoicePackage.as_view(), name="pakket_kiezen"),
+    path("pakket/toevoegen/<int:product>/<int:pakket>/<int:hoeveel>", ToevoegenPakketView.as_view(), name="toevoegen_pakket"),
+    path("pakketten/<int:id>", PakketDetailView.as_view(), name="pakketten_detail"),
+    path("pakketten/verwijderen/<int:product>/<int:pakket>/<int:hoeveel>", VerwijderenPakketView.as_view(), name="pakketten_verwijderen"),
     path("product/overzicht/<int:id>/update/<int:iditem>", UpdateProductItem.as_view(), name="product-item-update"),	
     path('verwijder-medewerkers/<int:id>/', verwijder_medewerkers, name='verwijder-medewerkers'),
     path('klanten/', klanten, name='klanten'),

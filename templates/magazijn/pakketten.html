@@ -1,0 +1,97 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+{% load magazijn_extras %}
+<form method="GET" class="grid-products">
+
+    <div id= "zoekbak">
+        {{ filter.form.searchbar }}
+        <button type="submit" class= "submit-zoekbak"><img class= 'looking-glass'src='{% static "image/looking_glass.png" %}'></button>
+    </div>
+
+
+    <div id = "item1">
+        <div>
+            <a class= "card-btn" href= "{% url 'add-stock' %}">product toevoegen</a>
+        </div>
+        <div>
+            
+            {% for field in filter2.form %}
+            <strong>{{ field.label_tag }}</strong>
+                {{ field }}
+            {% endfor %}
+            <br>
+            <button type="submit" class= "zoek-btn"><strong>Zoeken</strong> <img src='{% static "image/looking_glass.png" %}'></button>
+        </div>
+
+    </div>  
+
+    <div id ='item2'> 
+        <div class= 'flex-products'> 
+        
+        {% for product in page_obj %}
+            {% include "components/shopping-card.html" with product=product pakket=pakket %}
+        {% endfor %}
+        </div>
+    </div>
+
+    <div id='item3'>
+        <span class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
+            {% endif %}
+        
+            {% for i in page_obj.paginator.page_range %}
+            {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4 %}
+                <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == page_obj.number %}class="active"{% endif %}>{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        
+            {% if page_obj.has_next %}
+                <a href="{% my_url page_obj.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
+            {% endif %}
+        </span>
+        <a class='card-btn' href="{% url 'pakketten_detail' id=pakket.0.id  %}">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1.5rem" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+        </a>
+    </div>
+</form>
+
+    {% endblock content %}
+
+    {% block scripts %}
+    <script>
+
+        function updateHref(counter) {
+            var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+            var href = document.querySelector('.card-btn[id="quantity' + counter + '"]');
+            var hrefSplit = href.href.split("/");
+            hrefSplit[hrefSplit.length - 1] = quantityField.value;
+            href.href = hrefSplit.join("/");
+            
+
+          }
+
+        function increment(counter) {
+          var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+          var parsedInt = parseInt(quantityField.max, 10);
+          if (quantityField.value < parsedInt) {
+            quantityField.value++;
+            updateHref(counter);
+          }
+        }
+      
+        function decrement(counter) {
+          var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+          var parsedInt = parseInt(quantityField.min, 10);
+          if (quantityField.value > parsedInt) {
+            quantityField.value--;
+            updateHref(counter);
+          }
+        }
+    </script>
+    {% endblock scripts %}

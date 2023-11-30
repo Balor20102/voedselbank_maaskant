@@ -7,7 +7,7 @@ class Leverancier(models.Model):
     contactpersoon = models.CharField(max_length=100)
     telefoon = models.IntegerField()
     email = models.EmailField()
-    leveringsdatum = models.DateField()
+    leveringsdatum = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.bedrijfsnaam

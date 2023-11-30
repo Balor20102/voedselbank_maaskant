@@ -1,0 +1,15 @@
+{% load static %}
+<div class="product">
+    <img src ="{{ product.afbeelding.url }}" class= 'image-card'>
+    <div style="margin: 1rem;">
+        <p>{{ product.name }}</p>
+        <p>{{ product.voorraad }}</p>
+        <button type="button" onclick="decrement({{ forloop.counter }})">-</button>
+        <input type="number" class="quantity-input" name="quantity{{ forloop.counter }}" max="{{product.voorraad}}" min="0" readonly>
+        <button type="button" onclick="increment({{ forloop.counter }})">+</button>
+    </div>
+
+    <div>
+        <a href="{% url 'toevoegen_pakket' product=product.id pakket=pakket.0.id hoeveel=0 %}" class="card-btn" id="quantity{{ forloop.counter }}">toevoegen aan pakket</a>
+    </div>
+</div>

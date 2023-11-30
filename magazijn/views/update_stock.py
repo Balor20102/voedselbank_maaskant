@@ -10,26 +10,19 @@ class UpdateStockView(View):
     form_class = ProductForm
 
     def get(self, request, id):
-
         product = Product.objects.get(id=id)
         form = self.form_class(instance=product)
-
         context = {
-        'form': form,
+            'form': form,
         }
-
         return render(request, self.template_name, context)
     
     def post(self, request, id):
         form = self.form_class(request.POST, request.FILES, instance=Product.objects.get(id=id))
         if form.is_valid():
             form.save()
-            
             return redirect('stock-employe')
-        
-
         context = {
-        'form': form,
+            'form': form,
         }
-
         return render(request, self.template_name, context)
