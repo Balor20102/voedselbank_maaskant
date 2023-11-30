@@ -43,6 +43,9 @@ urlpatterns = [
     path('klanten/toevoegen/', create_klanten, name='create-klanten'),
     path('klanten-aanpassen/<int:id>/', klanten_aanpassen, name='klanten-aanpassen'),
     path('verwijder-klanten/<int:id>/', verwijder_klanten, name='verwijder-klanten'),
+    path('medewerker-registratie/', register, name='medewerker-registratie'),
+    path('medewerkers/', Medewerkers, name='medewerkers'),
+    path('verwijder-medewerkers/<int:id>/', verwijder_medewerkers, name='verwijder-medewerkers'),
 ]
 
 if settings.DEBUG:

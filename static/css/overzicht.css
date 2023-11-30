@@ -64,6 +64,9 @@
     align-self: center;
     align-content: center;
     display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 0.1rem;
 }
 
 .rmvbtn {
@@ -80,6 +83,9 @@
     align-self: center;
     align-content: center;
     display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 0.1rem;
 }
 
 .row {

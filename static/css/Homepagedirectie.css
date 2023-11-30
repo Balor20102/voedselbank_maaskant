@@ -1,11 +1,12 @@
-.content{
+.content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
 }
-.Item{
+
+.Item {
     width: 40%;
     border-width: 1px;
     border-style: solid;
@@ -17,7 +18,8 @@
     display: inline-flex;
     padding-bottom: 20px;
 }
-.top{
+
+.top {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -27,19 +29,23 @@
     margin: 0px;
     padding: 10px;
 }
-.top-text{
+
+.top-text {
     display: flex;
     justify-content: space-around;
 }
-.firsttxt{
+
+.firsttxt {
     font-size: 32px;
     margin-left: 5px;
 }
-.secondtxt{
+
+.secondtxt {
     font-size: 22px;
     margin-left: 10px;
 }
-.txtbtn{
+
+.txtbtn {
     width: 200px;
     height: 75px;
     border-radius: 30px;
@@ -53,8 +59,10 @@
     align-content: center;
     display: inline-block;
     line-height: 2.2em;
+    text-decoration: none;
 }
-.top-title{
+
+.top-title {
     font-size: 32px;
     font-weight: bold;
     text-align: center;

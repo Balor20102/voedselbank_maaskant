@@ -1,0 +1,9 @@
+{% load static %}
+
+<tr class="row">
+    <td class="collum"><p>{{ Medewerker.user }}</p></td>
+    <td class="collum"><p>{{ Medewerker.groups.0 }}</p></td>
+    <td class="collum">
+        <a class="rmvbtn" href="{% url 'verwijder-medewerkers' id=Medewerker.id %}"><span>Verwijderen</span></a>
+    </td>
+</tr>
