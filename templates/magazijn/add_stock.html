@@ -2,12 +2,16 @@
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
 <div class='center-screen'>
     <div class="form">
         <h3 class = "card-header">product toevoegen</h3>
+        <div>
+            <a href="{% url 'stock-employe' %}" class='back-btn'>Terug</a>
+        </div>
         <form method = "POST" enctype="multipart/form-data" class="stock-form">
             {% csrf_token %}
 
