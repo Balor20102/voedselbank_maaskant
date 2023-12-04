@@ -61,6 +61,8 @@ urlpatterns = [
     path("leveranciers/toevoegen/", create_leveranciers, name="add-leverancier"),
     path('medewerker-registratie/', register, name='medewerker-registratie'),
     path('medewerkers/', Medewerkers, name='medewerkers'),
+    
+    path('rapportages/', RapportagesView.as_view(), name='rapportages'),
 ]
 
 if settings.DEBUG:

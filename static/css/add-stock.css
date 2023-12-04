@@ -4,7 +4,8 @@
     flex-direction: column;
     background-color: #F0FFF2;
     border-radius:20px;
-    min-width: 70%
+    min-width: 70%;
+    gap: 1rem;
 }
 
 .stock-form{
@@ -83,5 +84,6 @@
     flex-direction: column;
     background-color: #F0FFF2;
     border-radius:20px;
-    min-width: 50%
+    min-width: 50%;
+    gap: 1rem;
 }

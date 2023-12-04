@@ -5,3 +5,4 @@ from .verwijderen_catagorie import *
 from .catagorie_aanpassen import *
 from .leveranciers import *
 from .medewerker import *
+from .rapportages import *
