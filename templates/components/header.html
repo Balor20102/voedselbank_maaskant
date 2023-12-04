@@ -1,6 +1,6 @@
 {% load static %}
 <header class= 'header'>
-    <img src="{% static 'image/logo.png' %}" alt="logo" class="logo">
+    <img src="{% static 'image/logo.png' %}" alt="logo" width= '100' height='100'>
     
     {% if user.groups.all.0.name == 'vrijwilliger'  %}
         <a href="{% url 'pakket_kiezen' %}">Pakketten maken</a>
