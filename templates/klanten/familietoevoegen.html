@@ -5,7 +5,7 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="../../static/css/leverancierstoevoegen.css"
+      href="../../static/css/form.css"
     />
 {% endblock %}
 {% block content %}
@@ -16,6 +16,7 @@
             <h1>Familie toevoegen</h1>
           </div>
           <a href="{% url 'directie-homepage' %}">Terug</a>
+          </div>
         <div class="content_tab">
           <form method="post" action="{% url 'create-klanten' %}">
             {% csrf_token %} {{ form.as_p }}
