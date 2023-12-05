@@ -63,6 +63,8 @@ urlpatterns = [
     path('medewerkers/', Medewerkers, name='medewerkers'),
     
     path('rapportages/', RapportagesView.as_view(), name='rapportages'),
+    path('rapportages/categorie/', CategorieRapportage.as_view(), name='rapportages-categorie'),
+    path('rapportages/categorie/<int:id>', PCRapportage.as_view(), name='rapportage-ingaand'),
 ]
 
 if settings.DEBUG:

@@ -6,3 +6,5 @@ from .catagorie_aanpassen import *
 from .leveranciers import *
 from .medewerker import *
 from .rapportages import *
+from .categorie_rapportage import *
+from .product_categorie_rapportage import *
