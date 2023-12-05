@@ -1,1 +1,15 @@
-{{id}}
+{% extends "../base.html" %}
+{% load static %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+
+<form method="get">
+    {{date_filter.form.as_p}}
+    <button type="submit">Search</button>
+</form>
+{% for item in date_filter.qs %}
+{{item}}<br>
+{% endfor %}
+{% endblock %}

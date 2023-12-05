@@ -19,7 +19,7 @@ class ProductItem(models.Model):
 
     def __str__(self):
         if self.product:
-            return f"{self.product.name} {self.leverancier} {self.houdsbaarheiddatum}"
+            return f"{self.product.name} {self.leverancier} .'houdbaarheidsdatum ->'.{self.houdsbaarheiddatum}"
         else:
             return f"{'geen product'} {self.leverancier} {self.houdsbaarheiddatum}"
     
