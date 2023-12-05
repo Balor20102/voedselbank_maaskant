@@ -1,0 +1,45 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Homepagedirectie.css' %}">
+{% endblock %}
+
+
+{% block content%}
+
+    <div class="content">
+        <div class="Item">
+            <div class="top" >
+                <h1 class="top-title">Familie</h1>
+            </div>
+            <div class="top-text">
+                <P class="firsttxt">Aantal families</P>
+                <p class="firsttxt">10</p>
+            </div>
+            <div class="top-text">
+                <P class="secondtxt">een familie toevoegen?</P>
+                <p class="secondtxt">overzicht families bekijken?</p>
+            </div>
+            <div class="top-text">
+                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Toevoegen</span></a>
+                <a href= "{% url 'klanten' %}" class="txtbtn"><span>Overzicht</span></a>
+            </div>
+        </div>
+        <div class="Item">
+                <div class="top">
+                    <h1 class="top-title">Leverancier</h1>
+                </div>
+                <div class="top-text">
+                    <P class="firsttxt">totaal aantal Leveranciers:</P>
+                    <p class="firsttxt">595</p> 
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">Een leverancier toevoegen?</P>
+                    <p class="secondtxt">Leverancier overzicht bekijken?</p>
+                </div>
+                <div class="top-text">
+                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'leveranciers' %}" class="txtbtn"><span>Overzicht</span></a>
+                </div>
+        </div>
