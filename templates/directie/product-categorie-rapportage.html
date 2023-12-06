@@ -1,15 +1,43 @@
 {% extends "../base.html" %}
 {% load static %}
 {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ingaand-rapportages.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<form method="get">
-    {{date_filter.form.as_p}}
-    <button type="submit">Search</button>
-</form>
-{% for item in date_filter.qs %}
-{{item}}<br>
-{% endfor %}
+    <div class="rapportage-grid">
+        <form class="rapportage-form" method="get">
+            {% for field in date_filter.form %}
+                <div>
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class = 'flex-row'>
+            <input type="submit" value="Submit">
+            </div>
+        </form>
+        <table class='pakket-item'>
+            <tr>
+                <th>Product</th>
+                <th>Aantal</th>
+                <th>Leverancier</th>
+                <th>Leverings datum</th>
+            </tr>
+            {% for product_count in product_counts %}
+                <tr>
+                    <td>{{product_count.product}}</td>
+                    <td>{{product_count.count}}</td>
+                    <td>{{product_count.product.product_items.all.0.leverancier}}</td>
+                    <td>{{product_count.product.product_items.all.0.leverings_datum}}</td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
 {% endblock %}
