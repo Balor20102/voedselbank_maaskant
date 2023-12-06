@@ -3,41 +3,69 @@
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/ingaand-rapportages.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
 {% endblock %}
 
 {% block content %}
 
+{% load magazijn_extras %}
+<div class='center-screen'>
     <div class="rapportage-grid">
         <form class="rapportage-form" method="get">
+            <a class='card-btn' href="{% url 'rapportages-categorie' %}">Terug</a>
             {% for field in date_filter.form %}
-                <div>
+                <div class= 'field'>
                     {{ field.errors }}
                     {{ field.label_tag }}
                     {{ field }}
                 </div>
             {% endfor %}
             <div class = 'flex-row'>
-            <input type="submit" value="Submit">
+            <input class='card-btn' type="submit" value="Submit">
             </div>
         </form>
-        <table class='pakket-item'>
-            <tr>
-                <th>Product</th>
-                <th>Aantal</th>
-                <th>Leverancier</th>
-                <th>Leverings datum</th>
-            </tr>
-            {% for product_count in product_counts %}
+        <div class='raportage-items'>
+            <div style='width: 100%;'>
+                <h3 class='card-header'>{{catagorie.name}}</h3>
+            </div>
+            <table>
                 <tr>
-                    <td>{{product_count.product}}</td>
-                    <td>{{product_count.count}}</td>
-                    <td>{{product_count.product.product_items.all.0.leverancier}}</td>
-                    <td>{{product_count.product.product_items.all.0.leverings_datum}}</td>
-
+                    <th>Product</th>
+                    <th>Aantal</th>
+                    <th>Leverancier</th>
+                    <th>Leverings datum</th>
                 </tr>
-            {% endfor %}
-        </table>
-    </div>
+                {% for product_count in product_counts %}
+                    <tr>
+                        <td>{{product_count.product}}</td>
+                        <td>{{product_count.count}}</td>
+                        <td>{{product_count.product.product_items.all.0.leverancier}}</td>
+                        <td>{{product_count.product.product_items.all.0.leverings_datum}}</td>
 
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div id='item3'>
+            <span class="pagination">
+                {% if product_counts.has_previous %}
+                    <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo;</a>
+                {% endif %}
+            
+                {% for i in product_counts.paginator.page_range %}
+                {% if i >= product_counts.number|add:-4 and i <= product_counts.number|add:4 %}
+                    <a href="{% my_url i 'page' request.GET.urlencode %}" {% if i == product_counts.number %}class="active"{% endif %}>{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+            
+                {% if product_counts.has_next %}
+                    <a href="{% my_url product_counts.paginator.num_pages 'page' request.GET.urlencode %}">&raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
