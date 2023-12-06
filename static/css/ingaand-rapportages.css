@@ -1,0 +1,92 @@
+.rapportage-grid{
+    display: grid;
+    grid-gap: 2rem;
+    width: 80%;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    grid-template-areas: 
+      "filter items items items items"
+      "filter items items  items items"
+      "pagination pagination pagination pagination pagination";
+
+}
+
+.rapportage-form{
+    grid-area: filter;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: #B8FFB8;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.rapportage-form input{
+    margin: 0.5rem 0;
+}
+
+.rapportage-form a{
+    margin-bottom: 0.5rem;
+}
+
+.rapportage-form input[type="number"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.field{
+    text-align: left;
+    }
+
+.flex-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.raportage-items{
+    grid-area: items;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F0FFF2;
+    border-radius: 20px;
+}
+
+.raportage-items table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .raportage-items td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .raportage-items tr:nth-child(even) {
+    background-color: #B8FFB8;
+  }
+
+#id_leverancier, #id_product{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    max-height: 100px;
+    overflow-y: scroll;
+}
+
+#item_3{
+    grid-area: pagination;
+}

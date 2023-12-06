@@ -1,0 +1,12 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+
+    {% for categorie in catagorieen %}
+        <li><a href="{% url 'rapportage-ingaand' id=categorie.id %}">{{ categorie.name }}</a></li>
+    {% endfor %}
+{% endblock %}
+```
