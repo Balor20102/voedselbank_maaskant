@@ -18,7 +18,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from login.views import LoginView, home
+from login.views import LoginView, HomeView
 from directie.views import *
 from klanten.views import *
 
@@ -27,7 +27,7 @@ from magazijn.views import *
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", LoginView.as_view(), name="login"),
-    path("home/", home, name="home"),
+    path("home/", HomeView.as_view(), name="home"),
     path("logout/", LogoutView.as_view(next_page='login'), name="logout"),
     path('create-catagorie/', create_catagorie, name='create-catagorie'),
     path('catagorie-aanpassen/<int:id>/', catagorie_aanpassen, name='catagorie-aanpassen'),
