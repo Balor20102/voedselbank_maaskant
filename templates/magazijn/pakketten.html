@@ -16,9 +16,6 @@
 
     <div id = "item1">
         <div>
-            <a class= "card-btn" href= "{% url 'add-stock' %}">product toevoegen</a>
-        </div>
-        <div>
             
             {% for field in filter2.form %}
             <strong>{{ field.label_tag }}</strong>

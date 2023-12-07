@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class='center-screen'>
-        <div class="form">
+        <div class="flex-column">
             <h3 class = "card-header">{{pakket.gezinsnaam}} - {{pakket.aangemaakt_op}}</h3>
             <form class="stock-form" method='POST'>
                 {% csrf_token %}

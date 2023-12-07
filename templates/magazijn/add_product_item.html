@@ -16,10 +16,10 @@
             <!-- If productitem is not present (None or falsy) -->
             <h3 class="card-header">product toevoegen</h3>
         {% endif %}
-        <div>
-            <a href=" {% url 'product-item' id=product.id %}" class='back-btn'>Terug</a>
-        </div>
         <form method = "POST" enctype="multipart/form-data" class="stock-form">
+            <div>
+                <a href=" {% url 'product-item' id=product.id %}" class='back-btn'>Terug</a>
+            </div>
             {% csrf_token %}
 
             {% for field in form %}

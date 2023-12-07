@@ -1,8 +1,10 @@
 .center-screen{
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 100vh;
+}
+.align-center{
+    align-items: center;
 }
 
 .grid-2{
