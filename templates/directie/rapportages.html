@@ -11,36 +11,32 @@
     <div class="content">
         <div class="Item">
             <div class="top" >
-                <h1 class="top-title">Familie</h1>
+                <h1 class="top-title">Inkomend</h1>
             </div>
             <div class="top-text">
-                <P class="firsttxt">Aantal families</P>
-                <p class="firsttxt">10</p>
+                <P class="firsttxt">{{ count_inkomende_producten }}</P> 
             </div>
             <div class="top-text">
-                <P class="secondtxt">een familie toevoegen?</P>
-                <p class="secondtxt">overzicht families bekijken?</p>
+                <P class="secondtxt">inkomende producten</P>
             </div>
             <div class="top-text">
-                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Toevoegen</span></a>
-                <a href= "{% url 'klanten' %}" class="txtbtn"><span>Overzicht</span></a>
+                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Overzicht</span></a>
             </div>
         </div>
         <div class="Item">
                 <div class="top">
-                    <h1 class="top-title">Leverancier</h1>
+                    <h1 class="top-title">Uitgaand</h1>
                 </div>
                 <div class="top-text">
-                    <P class="firsttxt">totaal aantal Leveranciers:</P>
-                    <p class="firsttxt">595</p> 
+                    <P class="secondtxt">{{ count_uitgaande_producten }}</P>
+                    <p class="secondtxt">{{ count_overdatum_producten }}</p> 
                 </div>
                 <div class="top-text">
-                    <P class="secondtxt">Een leverancier toevoegen?</P>
-                    <p class="secondtxt">Leverancier overzicht bekijken?</p>
+                    <P class="secondtxt">uitgelevered</P>
+                    <p class="secondtxt">over houdsbaarheids datum</p>
                 </div>
                 <div class="top-text">
-                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Toevoegen</span></a>
-                    <a href="{% url 'leveranciers' %}" class="txtbtn"><span>Overzicht</span></a>
+                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>
-{% endblock content %}
+    {% endblock %}
