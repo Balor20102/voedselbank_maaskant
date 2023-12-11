@@ -37,5 +37,6 @@ class UitgaatRapportage(LoginRequiredMixin, View):
         context = {
             "myFilter": myFilter,
             'products': products,
+            'product_counts': products.count(),
         }
         return render(request, self.template_name, context=context)
