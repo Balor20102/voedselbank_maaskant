@@ -1,0 +1,14 @@
+<form>
+    {{ myFilter.form.as_p }}
+    <input type="submit" value="Search">
+</form>
+{{products}}<br>
+{% for product_item in  products %}
+{{ product_item.product__catagorieën}}
+{{ product_item.Goed}}
+{{ product_item.in_pakket}}
+{{ product_item.Verlopen}}
+{{ product_item.Verdwenen}}
+
+<br>
+{% endfor %}

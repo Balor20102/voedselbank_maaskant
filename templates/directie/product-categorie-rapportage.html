@@ -13,7 +13,6 @@
 <div class='center-screen'>
     <div class="rapportage-grid">
         <form class="rapportage-form" method="get">
-            <a class='card-btn' href="{% url 'rapportages-categorie' %}">Terug</a>
             {% for field in date_filter.form %}
                 <div class= 'field'>
                     {{ field.errors }}
@@ -32,6 +31,7 @@
             <table>
                 <tr>
                     <th>Product</th>
+                    <th>Product Categorie</th>
                     <th>Aantal</th>
                     <th>Leverancier</th>
                     <th>Leverings datum</th>
@@ -39,6 +39,11 @@
                 {% for product_count in product_counts %}
                     <tr>
                         <td>{{product_count.product}}</td>
+                        <td>
+                            {%for categorie in product_count.product.catagorieën.all %}
+                            {{categorie.name}},
+                            {% endfor %}
+                        </td>
                         <td>{{product_count.count}}</td>
                         <td>{{product_count.product.product_items.all.0.leverancier}}</td>
                         <td>{{product_count.product.product_items.all.0.leverings_datum}}</td>
