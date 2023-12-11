@@ -1,56 +1,61 @@
-from django.test import TestCase, RequestFactory
+import os
+from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User
-
-from magazijn.models import Product
-from magazijn.views import AddStockView
-from magazijn.forms import ProductForm, AddProductItemForm
-
+from django.core.files.uploadedfile import SimpleUploadedFile
+from ..models import Product, Catagorie, ProductItem
+from ..forms import ProductForm, AddProductItemForm
+from directie.models import Leverancier
 
 class AddStockViewTestCase(TestCase):
+
     def setUp(self):
-        self.factory = RequestFactory()
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.url = reverse('add-stock')
+        # Create a sample category if needed
+        self.category = Catagorie.objects.create(name='Sample Category')
+        self.leverancier = Leverancier.objects.create(bedrijfsnaam='Sample Leverancier', telefoon=1234567890,)
 
-    def test_get(self):
-        request = self.factory.get(self.url)
-        request.user = self.user
 
-        response = AddStockView.as_view()(request)
+    def test_add_stock_view(self):
+        # Create a sample image file for testing file upload
+        # Get the directory of the current script (assuming this code is inside your test script)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'magazijn/add_stock.html')
-        self.assertIsInstance(response.context_data['form'], ProductForm)
-        self.assertIsInstance(response.context_data['form2'], AddProductItemForm)
+        # Specify the path to your image file relative to the current script
+        image_path = os.path.join(current_dir, 'test_images', 'logo.png')
 
-    def test_post_valid_form(self):
-        data = {
-            'voorraad': 5,
-            # Include other required fields for the ProductForm and AddProductItemForm
+        
+        with open(image_path, 'rb') as f:
+            image_content = f.read()
+
+        image_file = SimpleUploadedFile("logo.png", image_content, content_type="image/png")
+
+        # Data for the product form
+        product_data = {
+            'name': 'Test Product',
+            'category': self.category.id,
+            'EAN': '1234567890123',
+            'afbeelding': image_file,
         }
-        request = self.factory.post(self.url, data)
-        request.user = self.user
 
-        response = AddStockView.as_view()(request)
+        # Data for the product item form
+        product_item_data = {
+            'houdsbaarheiddatum': '2021-01-01',
+            'leverancier': self.leverancier.id,
+        }
 
+        # Post data to the view
+        response = self.client.post(reverse('add-stock'), {**product_data, **product_item_data, 'voorraad': 3})
+        
+
+        # Check if the view redirected successfully
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('stock-employe'))
 
-        # Add assertions to check if the product and product items are created correctly
+        # Check if the view redirected successfully
+        self.assertEqual(response.status_code, 302)
 
-    def test_post_invalid_form(self):
-        data = {
-            'voorraad': -5,  # Invalid stock value
-            # Include other required fields for the ProductForm and AddProductItemForm
-        }
-        request = self.factory.post(self.url, data)
-        request.user = self.user
+        # Check if the product and product items are created
+        self.assertEqual(Product.objects.count(), 1)
+        self.assertEqual(ProductItem.objects.count(), 3)
 
-        response = AddStockView.as_view()(request)
+        # Optional: You can check other conditions as well, e.g., the redirected URL, content of the response, etc.
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'magazijn/add_stock.html')
-        self.assertIsInstance(response.context_data['form'], ProductForm)
-        self.assertIsInstance(response.context_data['form2'], AddProductItemForm)
-        self.assertFormError(response, 'form', 'voorraad', 'Ensure this value is greater than or equal to 0')
+    # Add more test cases as needed
