@@ -106,3 +106,21 @@
     padding: 5px;
     gap: 0px;
 }
+
+.return_btn {
+    width: 50%;
+    border-radius: 30px;
+    margin: 20px;
+    border: 1px solid black;
+    background-color: #B8B8FF;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 0.1rem;
+}
