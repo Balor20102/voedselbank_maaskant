@@ -1,7 +1,8 @@
 import django_filters
 from django import forms
-from magazijn.models import ProductItem, Product
+from magazijn.models import ProductItem, Product, Catagorie, Pakket
 from directie.models import Leverancier
+from klanten.models import Klant
 
 class DateFilter(django_filters.FilterSet):
     month = django_filters.NumberFilter(field_name='leverings_datum__month', label='Month')
@@ -22,8 +23,38 @@ class DateFilter(django_filters.FilterSet):
         widget=forms.CheckboxSelectMultiple,
         )
 
+
+    product_category = django_filters.ModelMultipleChoiceFilter(queryset=Catagorie.objects.all(),
+                                                                field_name='product__catagorieën',
+                                                                to_field_name='id',
+                                                                label='Product categorie',
+                                                                widget=forms.CheckboxSelectMultiple,)
     class Meta:
         model = ProductItem
         fields = []
     
+
+class DateFilter2(django_filters.FilterSet):
+    month = django_filters.NumberFilter(field_name='leverings_datum__month', label='Month')
+    year = django_filters.NumberFilter(field_name='leverings_datum__year', label='Year')
     
+    product_category = django_filters.ModelMultipleChoiceFilter(queryset=Catagorie.objects.all(),
+                                                                field_name='product__catagorieën',
+                                                                to_field_name='id',
+                                                                label='Product categorie',
+                                                                widget=forms.CheckboxSelectMultiple,)
+
+    adres = django_filters.ModelMultipleChoiceFilter(queryset= Klant.objects.all(),
+                                                     field_name='pakket__gezinsnaam', 
+                                                     label='postcode',
+                                                     to_field_name='id',
+                                                     widget=forms.CheckboxSelectMultiple,
+                                                     )
+
+    
+
+
+
+    class Meta:
+        model = ProductItem
+        fields = []

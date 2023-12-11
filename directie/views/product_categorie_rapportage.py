@@ -15,9 +15,9 @@ class PCRapportage(LoginRequiredMixin, View):
     date_filter = DateFilter
     template_name = 'directie/product-categorie-rapportage.html'
 
-    def get(self, request, id, *args, **kwargs):
-        catagorie = Catagorie.objects.get(pk=id)
-        product_items = self.product_item_model.objects.filter(product__catagorieën__id=id)
+    def get(self, request, *args, **kwargs):
+
+        product_items = self.product_item_model.objects.all()
 
         date_filter = self.date_filter(request.GET, queryset=product_items)
 
@@ -29,6 +29,7 @@ class PCRapportage(LoginRequiredMixin, View):
         for product_count in product_counts:
             product = self.product_model.objects.get(pk=product_count['product'])
             product_count['product'] = product
+            
 
         paginated_filter = Paginator(product_counts, 10)
         page_number = request.GET.get('page')
@@ -38,7 +39,6 @@ class PCRapportage(LoginRequiredMixin, View):
             'product_items': product_items,
             'date_filter': date_filter,
             'product_counts': page_obj,
-            'catagorie': catagorie,
         }
 
         return render(request, self.template_name, context)
