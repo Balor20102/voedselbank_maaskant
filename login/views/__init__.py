@@ -1,2 +1,2 @@
 from .login import LoginView
-from .home import home
+from .home import HomeView

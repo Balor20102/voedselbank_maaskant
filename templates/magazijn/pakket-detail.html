@@ -1,0 +1,86 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pakketten.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class='center-screen'>
+        <div class="flex-column">
+            <h3 class = "card-header">{{pakket.gezinsnaam}} - {{pakket.aangemaakt_op}}</h3>
+            <form class="stock-form" method='POST'>
+                {% csrf_token %}
+                <div class='flex'>
+                <div>
+                    <a class='card-btn' href="{% url 'pakket' pk=klant.pk %}">terug</a>
+                </div>
+                <div class='tiny-form'>
+                    {% for field in form %}
+                    {{field.label_tag}}
+                    <div class="field-form">
+                    {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+                <table class='pakket-item'>
+                    <tr>
+                        <th>Product</th>
+                        <th>Aantal</th>
+                        <th>Verwijderen</th>
+                    </tr>
+                    {% for product_count in product_counts %}
+                        <tr>
+                            <td>{{product_count.product}}</td>
+                            <td>{{product_count.count}}</td>
+                            <td><button type="button" onclick="decrement({{ forloop.counter }})">-</button>
+                                <input type="number" class="quantity-input" name="quantity{{ forloop.counter }}" max="{{product_count.count}}" min="0" readonly>
+                                <button type="button" onclick="increment({{ forloop.counter }})">+</button>
+                                <a href="{% url 'pakketten_verwijderen' product=product_count.product.id pakket=pakket.id hoeveel=0 %}" class="card-btn" id="quantity{{ forloop.counter }}">Verwijderen</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <div class='flex-reverse'>
+                    <input class='card-btn' type="submit" value="pakket klaar" class='submit'>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+
+    function updateHref(counter) {
+        var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+        var href = document.querySelector('.card-btn[id="quantity' + counter + '"]');
+        var hrefSplit = href.href.split("/");
+        hrefSplit[hrefSplit.length - 1] = quantityField.value;
+        href.href = hrefSplit.join("/");
+        
+
+      }
+
+    function increment(counter) {
+      var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+      var parsedInt = parseInt(quantityField.max, 10);
+      if (quantityField.value < parsedInt) {
+        quantityField.value++;
+        updateHref(counter);
+      }
+    }
+  
+    function decrement(counter) {
+      var quantityField = document.querySelector('.quantity-input[name="quantity' + counter + '"]');
+      var parsedInt = parseInt(quantityField.min, 10);
+      if (quantityField.value > parsedInt) {
+        quantityField.value--;
+        updateHref(counter);
+      }
+    }
+</script>
+{% endblock scripts %}

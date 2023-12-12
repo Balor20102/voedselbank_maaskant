@@ -1,0 +1,15 @@
+.pakket-item{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.pakket-item th{
+    text-align: left;
+}
+
+.tiny-form{
+    width: 90%;
+    align-items: center;
+}

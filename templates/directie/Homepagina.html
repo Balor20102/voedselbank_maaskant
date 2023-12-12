@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="../../static/css/Homepagedirectie.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePagina</title>
-</head>
-<body>
-    <div class="header">
+{% extends "../base.html" %}
+{% load static %}
 
-    </div>
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Homepagedirectie.css' %}">
+{% endblock %}
+
+
+{% block content%}
+
     <div class="content">
         <div class="Item">
             <div class="top" >
@@ -16,15 +15,15 @@
             </div>
             <div class="top-text">
                 <P class="firsttxt">Aantal families</P>
-                <p class="firsttxt">10</p>
+                <p class="firsttxt"> {{ klanten }} </p>
             </div>
             <div class="top-text">
                 <P class="secondtxt">een familie toevoegen?</P>
                 <p class="secondtxt">overzicht families bekijken?</p>
             </div>
             <div class="top-text">
-                <a class="txtbtn"><span>Toevoegen</span></a>
-                <a class="txtbtn"><span>Overzicht</span></a>
+                <a href="{% url 'create-klanten' %}" class="txtbtn"><span>Toevoegen</span></a>
+                <a href= "{% url 'klanten' %}" class="txtbtn"><span>Overzicht</span></a>
             </div>
         </div>
         <div class="Item">
@@ -33,15 +32,15 @@
                 </div>
                 <div class="top-text">
                     <P class="firsttxt">totaal aantal Leveranciers:</P>
-                    <p class="firsttxt">595</p> 
+                    <p class="firsttxt"> {{ leveranciers }} </p> 
                 </div>
                 <div class="top-text">
                     <P class="secondtxt">Een leverancier toevoegen?</P>
                     <p class="secondtxt">Leverancier overzicht bekijken?</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn"><span>Toevoegen</span></a>
-                    <a class="txtbtn"><span>Overzicht</span></a>
+                    <a href="{% url 'add-leverancier' %}" class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'leveranciers' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>
         <div class="Item">
@@ -53,8 +52,8 @@
                     <p class="secondtxt">Overzicht Medewerkers zien</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn"><span>Toevoegen</span></a>
-                    <a class="txtbtn"><span>Overzicht</span></a>
+                    <a href="{% url 'medewerker-registratie' %}" class="txtbtn"><span>Toevoegen</span></a>
+                    <a href="{% url 'medewerkers' %}" class="txtbtn"><span>Overzicht</span></a>
                 </div>
         </div>
         <div class="Item">
@@ -66,10 +65,9 @@
                     <p class="secondtxt">Categorieën zien/aanpassen</p>
                 </div>
                 <div class="top-text">
-                    <a class="txtbtn" href="{% url 'create_catagorie' %}"><span>Toevoegen</span></a>
+                    <a class="txtbtn" href="{% url 'create-catagorie' %}"><span>Toevoegen</span></a>
                     <a class="txtbtn" href="{% url 'catagorieën' %}"><span>Overzicht</span></a>
                 </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

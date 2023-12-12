@@ -2,3 +2,9 @@ from .catagorieën import *
 from .create_catagorie import *
 from .directie_home_page import *
 from .verwijderen_catagorie import *
+from .catagorie_aanpassen import *
+from .leveranciers import *
+from .medewerker import *
+from .rapportages import *
+from .product_categorie_rapportage import *
+from .uitgaat_rapportage import *

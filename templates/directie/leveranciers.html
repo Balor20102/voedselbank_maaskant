@@ -1,0 +1,40 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../static/css/overzicht.css"
+    />
+{% endblock %}
+
+{% block content %}
+
+    <div class="content">
+      <div class="categorie">
+        <div class="topbar">
+          <div class="topbar_title">
+            <h1>Leveranciers</h1>
+          </div>
+          <a  class="return_btn" href="{% url 'directie-homepage' %}">Terug</a>
+        </div>
+        <div class="content_tab">
+          <div class="searchbar"></div>
+          <div class="table">
+            <table class="table">
+            <tr class="row">
+              <td class="collum"><p>leverancier</p></td>
+              <td class="collum"><p>Leverings datum</p></td>
+              <td class="collum"><p>Bekijken</p></td>
+              <td class="collum"><p>verwijderen</p></td>
+            </tr>
+            {% for leverancier in Leveranciers %}
+                {% include "components/leveranciers-item.html" with leverancier=leverancier %}
+            {% endfor %}
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

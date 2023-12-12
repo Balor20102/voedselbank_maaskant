@@ -1,0 +1,42 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Homepagedirectie.css' %}">
+{% endblock %}
+
+
+{% block content%}
+
+    <div class="content">
+        <div class="Item">
+            <div class="top" >
+                <h1 class="top-title">Inkomend</h1>
+            </div>
+            <div class="top-text">
+                <P class="firsttxt">{{ count_inkomende_producten }}</P> 
+            </div>
+            <div class="top-text">
+                <P class="secondtxt">inkomende producten</P>
+            </div>
+            <div class="top-text">
+                <a href="{% url 'rapportage-ingaand' %}" class="txtbtn"><span>Overzicht</span></a>
+            </div>
+        </div>
+        <div class="Item">
+                <div class="top">
+                    <h1 class="top-title">Uitgaand</h1>
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">{{ count_uitgaande_producten }}</P>
+                    <p class="secondtxt">{{ count_overdatum_producten }}</p> 
+                </div>
+                <div class="top-text">
+                    <P class="secondtxt">uitgelevered</P>
+                    <p class="secondtxt">over houdsbaarheids datum</p>
+                </div>
+                <div class="top-text">
+                    <a href="{% url 'rapportages-uitgaand' %}" class="txtbtn"><span>Overzicht</span></a>
+                </div>
+        </div>
+    {% endblock %}

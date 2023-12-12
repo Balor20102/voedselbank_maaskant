@@ -1,6 +1,11 @@
-from django.shortcuts import render, redirect
-from directie.forms import createcategorieënform
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from klanten.models import Klant
+from directie.models import Leverancier
 
 def directiehomepage(request):
-    return render(request, 'directie/homepagina.html')
+    klanten = Klant.objects.all()
+    leveranciers = Leverancier.objects.all()
+    klanten_aantal = klanten.count()
+    leveranciers_aantal = leveranciers.count()
+    context = {"leveranciers": leveranciers_aantal, "klanten": klanten_aantal}
+    return render(request, 'directie/homepagina.html', context)
