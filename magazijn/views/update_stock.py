@@ -2,12 +2,12 @@ from django.views import View
 from django.shortcuts import render, redirect
 
 from ..models import Product
-from ..forms import ProductForm 
+from ..forms import UpdateProductForm 
 
 class UpdateStockView(View):
     model = Product
     template_name = 'magazijn/update_stock.html'
-    form_class = ProductForm
+    form_class = UpdateProductForm
 
     def get(self, request, id):
         product = Product.objects.get(id=id)

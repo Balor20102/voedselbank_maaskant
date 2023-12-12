@@ -27,6 +27,8 @@ class AddProductItem(View):
         if form.is_valid():
             form.save(commit=False)
             form.instance.product = product
+            product.voorraad += 1
+            product.save()
             form.save()
             return redirect('product-item', id=id)
         
