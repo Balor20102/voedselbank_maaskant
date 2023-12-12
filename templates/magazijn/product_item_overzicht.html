@@ -22,6 +22,9 @@
                 </div>
                 <h2 class = "card-header">{{product.name}}</h2>
                 <div>
+                    <a href="{% url 'product-item-add' id=product.id %}" class = "card-btn">toevoegen</a>
+                </div>
+                <div>
                     <a href="{% url 'update-stock' id=product.id %}" class = "card-btn">Aanpassen</a>
                 </div>
             </div>
