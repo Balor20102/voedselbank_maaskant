@@ -11,3 +11,11 @@ class AddProductItemForm(forms.ModelForm):
         fields = ['leverancier', 'houdsbaarheiddatum']
 
 
+class updateProductItemForm(forms.ModelForm):
+    leverancier = forms.ModelChoiceField(queryset=Leverancier.objects.all(), required=True)
+    houdsbaarheiddatum = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}))
+    status = forms.ChoiceField(choices=ProductItem.STATUS_CHOICES, required=True)
+
+    class Meta:
+        model = ProductItem
+        fields = ['leverancier', 'houdsbaarheiddatum']
