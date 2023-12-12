@@ -1,3 +1,3 @@
 from .add_product_form import ProductForm
-from .add_productItem_form import AddProductItemForm
+from .add_productItem_form import AddProductItemForm,updateProductItemForm
 from .uitgeef_datum_form import UitgeefDatumForm

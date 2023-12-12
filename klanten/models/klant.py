@@ -14,4 +14,4 @@ class Klant(models.Model):
     alergieën = models.ManyToManyField("Alergie", related_name="klant", null=True, blank=True)
 
     def __str__(self):
-        return self.postcode
+        return self.postcode + " " + self.gezinsnaam
