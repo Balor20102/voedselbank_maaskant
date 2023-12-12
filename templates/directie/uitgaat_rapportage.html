@@ -12,9 +12,17 @@
 {% load magazijn_extras %}
 <div class='center-screen'>
     <div class="rapportage-grid">
-        <form>
-            {{ myFilter.form.as_p }}
-            <input type="submit" value="Search">
+        <form class="rapportage-form" method="get">
+            {% for field in myFilter.form %}
+                <div class= 'field'>
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class = 'flex-row'>
+            <input class='card-btn' type="submit" value="Submit">
+            </div>
         </form>
         <div class='raportage-items'>
             <div style='width: 100%;'>
