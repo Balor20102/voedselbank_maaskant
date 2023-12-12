@@ -2,13 +2,13 @@ from django.views import View
 from django.shortcuts import render, redirect
 
 from ..models import Product, Catagorie
-from ..forms import ProductForm , AddProductItemForm
+from ..forms import ProductForm , StockAddProductItemForm
 
 class AddStockView(View):
     model = Product
     template_name = 'magazijn/add_stock.html'
     form_class = ProductForm
-    form_class2 = AddProductItemForm
+    form_class2 = StockAddProductItemForm
 
     def get(self, request):
 
@@ -26,10 +26,17 @@ class AddStockView(View):
 
         if form.is_valid() and form2.is_valid():
             stock = form.cleaned_data['voorraad']
-            product = form.save()
+            if stock <= 0:
+                stock = 0
+            product = form.save(commit=False)
+            product.voorraad = stock
+            product.save()
             
             productItem = form2.save(commit=False)
             productItem.product = product
+            if stock <= 0:
+                stock = 0
+
             for x in range(stock):
                 productItem.pk = None
                 productItem.save()
