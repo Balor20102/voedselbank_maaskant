@@ -29,9 +29,9 @@ class UitgaatRapportage(LoginRequiredMixin, View):
                 # Add more lines for additional statuses as needed
             ).order_by('product__catagorieën')
         
-
         for product in products:
-            product['product__catagorieën'] = Catagorie.objects.get(id=product['product__catagorieën'])
+            if product['product__catagorieën'] != None:
+                product['product__catagorieën'] = Catagorie.objects.get(id=product['product__catagorieën'])
 
 
         context = {
