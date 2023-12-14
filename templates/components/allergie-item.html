@@ -1,0 +1,10 @@
+{% load static %}
+
+<tr class="row">
+    <td class="collum"><p>{{ allergie.name }}</p></td>
+    {{cate}}
+    <td class="collum"><a class="btn" href="{% url 'allergieen-aanpassen' id=allergie.id %}"><span>Aanpassen</span><a/></td> 
+    <td class="collum">
+        <a class="rmvbtn" href="{% url 'verwijder_allergieen' id=allergie.id %}"><span>Verwijderen</span></a>
+    </td>
+</tr>

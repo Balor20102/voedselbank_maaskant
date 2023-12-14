@@ -2,7 +2,7 @@
 from django import forms
 from magazijn.models import Catagorie
 from directie.models import Leverancier
-from klanten.models import Klant
+from klanten.models import Klant, Alergie
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
@@ -40,3 +40,9 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = UserCreationForm.Meta.fields + ('group',)
 
+
+
+class createAlergieform(forms.ModelForm):
+    class Meta:
+        model = Alergie
+        fields = ['name']
