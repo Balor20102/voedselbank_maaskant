@@ -3,9 +3,11 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from directie.forms import CustomUserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required(login_url='')
 def Medewerkers(request):
     user_group_array = []
     for user in User.objects.all():
@@ -18,6 +20,8 @@ def Medewerkers(request):
     context = {'werknemer': user_group_array}
     return render(request, 'directie/medewerkers.html', context)
 
+
+@login_required(login_url='')
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -31,6 +35,8 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, 'directie/medewerkers_registreren.html', {'form': form})
 
+
+@login_required(login_url='')
 def verwijder_medewerkers(request, id):
     user = User.objects.get(id=id)
     user.delete()

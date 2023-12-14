@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from klanten.models import Klant
 from directie.models import Leverancier
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='')
 def directiehomepage(request):
     klanten = Klant.objects.all()
     leveranciers = Leverancier.objects.all()

@@ -1,5 +1,6 @@
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.shortcuts import render
 from django.utils import timezone
 from datetime import timedelta
@@ -8,7 +9,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from magazijn.models import Pakket
 from klanten.models import Klant
 
-class ChoicePackage(View, LoginRequiredMixin):
+
+class ChoicePackage(LoginRequiredMixin, View):
+
+
     model = Pakket
     klant_model = Klant
     template_name = "magazijn/pakket_kiezen.html"

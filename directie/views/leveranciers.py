@@ -4,18 +4,25 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from directie.models import Leverancier
 from directie.forms import createleveranciersform
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='')
 def leveranciers(request):
     Leveranciers = Leverancier.objects.all()
     context = {'Leveranciers': Leveranciers}
     # raise ValueError(context)
     return render(request, 'directie/leveranciers.html', context)
 
+
+@login_required(login_url='')
 def verwijder_leveranciers(request, id):
     obj = Leverancier.objects.get(pk=id)
     obj.delete()
     return redirect('directie-homepage')
 
+
+@login_required(login_url='')
 def create_leveranciers(request):
     if request.method == 'POST':
         form = createleveranciersform(request.POST)

@@ -1,9 +1,9 @@
 from django.views import View
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ..models import Product, ProductItem
 
-class DeleteProductItem(View):
+class DeleteProductItem(LoginRequiredMixin, View):
     model = ProductItem
 
 

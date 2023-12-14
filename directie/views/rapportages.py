@@ -1,12 +1,12 @@
 from django.views import View
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from magazijn.models import ProductItem, Pakket
 
 from datetime import datetime
 
 
-class RapportagesView(View):
+class RapportagesView(LoginRequiredMixin, View):
     
     Current_Month = datetime.now().month
     product = ProductItem

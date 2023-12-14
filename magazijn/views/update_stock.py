@@ -1,10 +1,11 @@
 from django.views import View
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import Product
 from ..forms import UpdateProductForm 
 
-class UpdateStockView(View):
+class UpdateStockView(LoginRequiredMixin, View):
     model = Product
     template_name = 'magazijn/update_stock.html'
     form_class = UpdateProductForm

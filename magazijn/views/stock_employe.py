@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..models import Product
 
 from ..filters import ProductFilter, CategorieProduct
 
-class StockEmployeView(View):
+class StockEmployeView(LoginRequiredMixin, View):
     model = Product
     filterset_product = ProductFilter
     filterset_categorie = CategorieProduct

@@ -2,7 +2,10 @@
 from django.shortcuts import render, redirect
 from directie.forms import createcategorieënform
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='')
 def create_catagorie(request):
     if request.method == 'POST':
         form = createcategorieënform(request.POST)

@@ -1,10 +1,10 @@
 from django.views import View
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ..models import Product, Catagorie
 from ..forms import ProductForm , StockAddProductItemForm
 
-class AddStockView(View):
+class AddStockView(LoginRequiredMixin,View):
     model = Product
     template_name = 'magazijn/add_stock.html'
     form_class = ProductForm

@@ -5,12 +5,14 @@ from django.utils import timezone
 from django.db.models import Count
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 from ..filters import ProductFilter, CategorieProduct
 from magazijn.models import Pakket, ProductItem, Product
 from klanten.models import Klant
 from magazijn.forms import UitgeefDatumForm
+
 
 class PakketDetailView(LoginRequiredMixin, View):
     template_name = "magazijn/pakket-detail.html"

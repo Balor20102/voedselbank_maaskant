@@ -1,18 +1,22 @@
 from klanten.models import Klant
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 from directie.forms import createleveranciersform, klantenaanpassenform
 
+@login_required(login_url='')
 def klanten(request):
     Klanten = Klant.objects.all()
     context = {'Klanten': Klanten}
     return render(request, 'klanten/klanten.html', context)
 
+@login_required(login_url='')
 def verwijder_klanten(request, id):
     obj = Klant.objects.get(pk=id)
     obj.delete()
     return redirect('directie-homepage')
 
+@login_required(login_url='')
 def create_klanten(request):
     if request.method == 'POST':
         form = klantenaanpassenform(request.POST)
