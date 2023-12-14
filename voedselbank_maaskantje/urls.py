@@ -65,6 +65,10 @@ urlpatterns = [
     path('rapportages/', RapportagesView.as_view(), name='rapportages'),
     path('rapportages/ingaand', PCRapportage.as_view(), name='rapportage-ingaand'),
     path('rapportages/uitgaand/', UitgaatRapportage.as_view(), name='rapportages-uitgaand'),
+    path('allergieen-toevoegen/', Allergieen.as_view(), name='allergieen'),
+    path('allergieen-aanpassen/<int:id>/', allergieen_aanpassen, name='allergieen-aanpassen'),
+    path('allergieen/', alergie, name='allergieen-overzicht'),
+    path('verwijder_allergieen/<int:id>/', verwijder_allergie, name='verwijder_allergieen'),
 ]
 
 if settings.DEBUG:

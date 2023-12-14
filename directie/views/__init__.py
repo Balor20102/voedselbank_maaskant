@@ -8,3 +8,7 @@ from .medewerker import *
 from .rapportages import *
 from .product_categorie_rapportage import *
 from .uitgaat_rapportage import *
+from .toevoegen_Allergieen import *
+from .overzicht_allergieen import *
+from .allerigieen_aanpassen import *
+from .verwijderen_allergieen import *
