@@ -34,6 +34,7 @@ def create_leveranciers(request):
 
     return render(request, 'directie/leverancierstoevoegen.html', {'form': form})
 
+@login_required(login_url='')
 def leveranciers_aanpassen(request, id):
     obj = get_object_or_404(Leverancier, id=id)
     form = createleveranciersform(request.POST or None, instance=obj)
