@@ -28,6 +28,7 @@ def create_klanten(request):
 
     return render(request, 'klanten/familietoevoegen.html', {'form': form})
 
+@login_required(login_url='')
 def klanten_aanpassen(request, id):
     obj = get_object_or_404(Klant, id=id)
     form = klantenaanpassenform(request.POST or None, instance=obj)
