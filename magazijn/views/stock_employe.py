@@ -14,11 +14,11 @@ class StockEmployeView(LoginRequiredMixin, View):
     template_name = 'magazijn/stock-employe.html'
 
     def get(self, request):
-        sq_filters = self.filterset_product(request.GET, queryset=self.model.objects.all())
-        sq_filters2 = self.filterset_categorie(request.GET, queryset=sq_filters.qs)
-        paginated_filter = Paginator(sq_filters2.qs, 10)
-        page_number = request.GET.get('page')
-        page_obj = paginated_filter.get_page(page_number)
+        sq_filters = self.filterset_product(request.GET, queryset=self.model.objects.all()) # filter producten
+        sq_filters2 = self.filterset_categorie(request.GET, queryset=sq_filters.qs) # filter producten op categorie
+        paginated_filter = Paginator(sq_filters2.qs, 10) # maak pagina's aan
+        page_number = request.GET.get('page') # haal pagina nummer op
+        page_obj = paginated_filter.get_page(page_number) # haal pagina op
 
         context = {
             'filter': sq_filters,
@@ -26,5 +26,5 @@ class StockEmployeView(LoginRequiredMixin, View):
             'page_obj': page_obj,
         }
 
-        return render(request, self.template_name, context )
+        return render(request, self.template_name, context ) # render pagina
 

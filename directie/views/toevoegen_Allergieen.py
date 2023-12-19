@@ -9,13 +9,13 @@ from directie.forms import createAlergieform
 
 class Allergieen(LoginRequiredMixin, View):
     def get(self, request):
-        form = createAlergieform()
+        form = createAlergieform() # maak form aan
         return render(request, 'directie/allergieen.html' , {'form': form})
 
     def post(self, request):
-        form = createAlergieform(request.POST)
-        if form.is_valid():
-            form.save()
+        form = createAlergieform(request.POST) # maak form aan met POST data
+        if form.is_valid(): # check of form valid is
+            form.save() # sla form op
             redirect('directiehomepage')
         return redirect('directiehomepage')
     

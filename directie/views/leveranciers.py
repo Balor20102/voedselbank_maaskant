@@ -36,9 +36,9 @@ def create_leveranciers(request):
 
 @login_required(login_url='')
 def leveranciers_aanpassen(request, id):
-    obj = get_object_or_404(Leverancier, id=id)
-    form = createleveranciersform(request.POST or None, instance=obj)
-    if form.is_valid():
-        form.save()
-        return redirect('directie-homepage')
-    return render(request, 'directie/leverancieraanpassen.html', {'form': form, 'id': id})
+    obj = get_object_or_404(Leverancier, id=id) # haal product op
+    form = createleveranciersform(request.POST or None, instance=obj) # maak form aan met POST data en product data
+    if form.is_valid(): # check of form valid is
+        form.save() # sla form op
+        return redirect('directie-homepage') # redirect naar product item pagina
+    return render(request, 'directie/leverancieraanpassen.html', {'form': form, 'id': id}) 

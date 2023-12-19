@@ -7,12 +7,12 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='')
 def create_catagorie(request):
-    if request.method == 'POST':
-        form = createcategorieënform(request.POST)
-        if form.is_valid():
-            form.save()
+    if request.method == 'POST': # If the form has been submitted...
+        form = createcategorieënform(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            form.save() # Save the form data to the database
             return redirect('directie-homepage')  # Redirect to a success page or another view
     else:
-        form = createcategorieënform()
+        form = createcategorieënform() # An unbound form
 
     return render(request, 'directie/Categorieëtoevoegen.html', {'form': form})

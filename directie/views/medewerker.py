@@ -9,30 +9,30 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='')
 def Medewerkers(request):
-    user_group_array = []
-    for user in User.objects.all():
-        if user.is_superuser:
-            continue
-        group_names = [group.name for group in user.groups.all()]
-        user_group_array.append({"user": user, "groups": group_names, "id": user.id})
+    user_group_array = [] # array met alle users en hun groepen
+    for user in User.objects.all(): # loop door alle users
+        if user.is_superuser: # als user superuser is, ga verder    
+            continue # ga verder
+        group_names = [group.name for group in user.groups.all()] # haal alle groepen op van user
+        user_group_array.append({"user": user, "groups": group_names, "id": user.id}) # voeg user en groepen toe aan array
 
 
-    context = {'werknemer': user_group_array}
-    return render(request, 'directie/medewerkers.html', context)
+    context = {'werknemer': user_group_array} # maak context aan
+    return render(request, 'directie/medewerkers.html', context) # render pagina met context
 
 
-@login_required(login_url='')
-def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            group = form.cleaned_data['group']
-            user.groups.add(group)
+@login_required(login_url='') # check of user ingelogd is
+def register(request): # functie voor registreren van medewerkers
+    if request.method == 'POST': # check of request een POST request is
+        form = CustomUserCreationForm(request.POST) # maak form aan met POST data
+        if form.is_valid(): # check of form valid is
+            user = form.save() # sla form op
+            group = form.cleaned_data['group']  # haal groep op uit form
+            user.groups.add(group) # voeg groep toe aan user
             return redirect('directie-homepage')  # Replace 'home' with your desired redirect URL
-        redirect('medewerker-registratie')
+        redirect('medewerker-registratie') # redirect naar registratie pagina
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm() # maak form aan
     return render(request, 'directie/medewerkers_registreren.html', {'form': form})
 
 

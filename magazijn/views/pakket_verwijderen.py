@@ -18,18 +18,18 @@ class VerwijderenPakketView(LoginRequiredMixin, View):
     filterset_categorie = CategorieProduct
 
     def get(self, request, product, pakket, hoeveel):
-        pakket = get_object_or_404(Pakket, pk=pakket)
-        product = get_object_or_404(Product, pk=product)
-        product_item = ProductItem.objects.filter(pakket=pakket, product=product).order_by('-houdsbaarheiddatum')
-        for i , product_item in zip(range(hoeveel) , product_item):
-            if product_item.houdsbaarheiddatum < timezone.now().date():
-                product_item.status = 3
-                product_item.pakket = None
-                product_item.save()
+        pakket = get_object_or_404(Pakket, pk=pakket) # haal pakket op
+        product = get_object_or_404(Product, pk=product) # haal product op
+        product_item = ProductItem.objects.filter(pakket=pakket, product=product).order_by('-houdsbaarheiddatum') # haal product items op
+        for i , product_item in zip(range(hoeveel) , product_item): # loop door product items
+            if product_item.houdsbaarheiddatum < timezone.now().date(): # check of houdbaarheidsdatum verlopen is
+                product_item.status = 3     # zet status op verlopen
+                product_item.pakket = None # zet pakket op None
+                product_item.save() # sla product item op
             else:
-                product_item.pakket = None
-                product_item.status = 1
-                product_item.save()
-                product.voorraad = product.voorraad + 1
-                product.save()
-        return redirect('pakketten_detail', id=pakket.id)
+                product_item.pakket = None # zet pakket op None
+                product_item.status = 1 # zet status op beschikbaar
+                product_item.save() # sla product item op
+                product.voorraad = product.voorraad + 1     # voeg voorraad toe aan product
+                product.save() # sla product op
+        return redirect('pakketten_detail', id=pakket.id) # redirect naar pakket detail pagina

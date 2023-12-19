@@ -24,14 +24,14 @@ class PakketDetailView(LoginRequiredMixin, View):
     form = UitgeefDatumForm
 
     def get(self, request, id):
-        pakket = get_object_or_404(Pakket, pk=id)
+        pakket = get_object_or_404(Pakket, pk=id) # haal pakket op
 
-        klant = get_object_or_404(Klant, pk=pakket.gezinsnaam.id)
+        klant = get_object_or_404(Klant, pk=pakket.gezinsnaam.id) # haal klant op
 
-        product_items = self.product_item_model.objects.filter(pakket=pakket)
-        product_counts = product_items.values('product').annotate(count=Count('product'))
+        product_items = self.product_item_model.objects.filter(pakket=pakket) # haal product items op
+        product_counts = product_items.values('product').annotate(count=Count('product')) # haal producten op met aantal
 
-        form = self.form(instance=pakket)
+        form = self.form(instance=pakket) # maak form aan met pakket
 
         context = {
             'pakket': pakket,
@@ -41,20 +41,20 @@ class PakketDetailView(LoginRequiredMixin, View):
             'form': form,
         }
 
-        for product_count in product_counts:
-            product = self.product_model.objects.get(pk=product_count['product'])
-            product_count['product'] = product
+        for product_count in product_counts: # loop door producten
+            product = self.product_model.objects.get(pk=product_count['product']) # haal product op
+            product_count['product'] = product # voeg product toe aan product count
 
 
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context) # render pagina
     
-    def post(self, request, id):
-        pakket = get_object_or_404(Pakket, pk=id)
-        form = self.form(request.POST, instance=pakket)
-        if form.is_valid():
-            pakket = form.save(commit=False)
-            pakket.save()
-            return redirect('pakket_kiezen')
-        else:
-            return redirect('pakketten_detail', id=pakket.id)
+    def post(self, request, id): # post request
+        pakket = get_object_or_404(Pakket, pk=id) # haal pakket op
+        form = self.form(request.POST, instance=pakket) # maak form aan met POST data
+        if form.is_valid(): # check of form valid is
+            pakket = form.save(commit=False) # sla form op
+            pakket.save() # sla pakket op
+            return redirect('pakket_kiezen') # redirect naar pakket kiezen pagina
+        else: # als form niet valid is
+            return redirect('pakketten_detail', id=pakket.id) # redirect naar pakket detail pagina
 

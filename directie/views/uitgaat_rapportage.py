@@ -16,10 +16,10 @@ class UitgaatRapportage(LoginRequiredMixin, View):
     def get(self, request):
         
         # Alle producten
-        product_items = ProductItem.objects.all()
+        product_items = ProductItem.objects.all() # haal alle product items op
 
         # Filter
-        myFilter = DateFilter2(request.GET, queryset=product_items)
+        myFilter = DateFilter2(request.GET, queryset=product_items) # filter product items op datum
 
         products = myFilter.qs.values('product__catagorieën').annotate(
                 Goed=Count(Case(When(status=1, then=1), output_field=IntegerField())),
@@ -27,12 +27,11 @@ class UitgaatRapportage(LoginRequiredMixin, View):
                 Verlopen=Count(Case(When(status=3, then=1), output_field=IntegerField())),
                 Verdwenen=Count(Case(When(status=4, then=1), output_field=IntegerField())),
                 # Add more lines for additional statuses as needed
-            ).order_by('product__catagorieën')
+            ).order_by('product__catagorieën') # tel product items per product en status en groepeer op catagorie
         
         for product in products:
-            if product['product__catagorieën'] != None:
-                product['product__catagorieën'] = Catagorie.objects.get(id=product['product__catagorieën'])
-
+            if product['product__catagorieën'] != None: # check of catagorie niet leeg is
+                product['product__catagorieën'] = Catagorie.objects.get(id=product['product__catagorieën']) # haal catagorie op
 
         context = {
             "myFilter": myFilter,

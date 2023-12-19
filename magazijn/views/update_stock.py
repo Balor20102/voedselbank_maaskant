@@ -11,19 +11,19 @@ class UpdateStockView(LoginRequiredMixin, View):
     form_class = UpdateProductForm
 
     def get(self, request, id):
-        product = Product.objects.get(id=id)
-        form = self.form_class(instance=product)
+        product = Product.objects.get(id=id) # haal product op
+        form = self.form_class(instance=product) # maak form aan met product data
         context = {
             'form': form,
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context) # render pagina
     
     def post(self, request, id):
-        form = self.form_class(request.POST, request.FILES, instance=Product.objects.get(id=id))
-        if form.is_valid():
-            form.save()
-            return redirect('stock-employe')
+        form = self.form_class(request.POST, request.FILES, instance=Product.objects.get(id=id)) # maak form aan met POST data
+        if form.is_valid(): # check of form valid is
+            form.save() # sla form op
+            return redirect('stock-employe') # redirect naar product item pagina
         context = {
             'form': form,
         }
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, context) # render pagina

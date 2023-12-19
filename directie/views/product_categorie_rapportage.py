@@ -17,23 +17,23 @@ class PCRapportage(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
 
-        product_items = self.product_item_model.objects.all()
+        product_items = self.product_item_model.objects.all() # haal alle product items op
 
-        date_filter = self.date_filter(request.GET, queryset=product_items)
+        date_filter = self.date_filter(request.GET, queryset=product_items) # filter product items op datum
 
         # Use the filtered queryset
-        product_items = date_filter.qs
+        product_items = date_filter.qs # sla gefilterde product items op
 
-        product_counts = product_items.values('product').annotate(count=Count('product')).order_by('leverings_datum')
+        product_counts = product_items.values('product').annotate(count=Count('product')).order_by('leverings_datum') # tel product items per product
 
-        for product_count in product_counts:
-            product = self.product_model.objects.get(pk=product_count['product'])
-            product_count['product'] = product
+        for product_count in product_counts: # loop door product counts
+            product = self.product_model.objects.get(pk=product_count['product']) # haal product op
+            product_count['product'] = product # voeg product toe aan product count
             
 
-        paginated_filter = Paginator(product_counts, 10)
-        page_number = request.GET.get('page')
-        page_obj = paginated_filter.get_page(page_number)
+        paginated_filter = Paginator(product_counts, 10) # maak pagina's aan
+        page_number = request.GET.get('page') # haal pagina nummer op
+        page_obj = paginated_filter.get_page(page_number) # haal pagina op
 
         context = {
             'product_items': product_items,
